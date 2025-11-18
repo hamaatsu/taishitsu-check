@@ -633,21 +633,44 @@
     const allScoresEl = document.getElementById("allScores");
 
     if (topResultsEl) {
-      let html = "<h3>あなたの体質タイプ（上位3つ）</h3><ol>";
+      let html = '<div class="results-card">';
+      html += '<div class="results-header">判定結果</div>';
+      html += '<p class="results-main-title">あなたの体質タイプ（上位3つ）</p>';
+      html += '<ol class="top-type-list">';
+
       top3.forEach((item, idx) => {
-        html += `<li>${idx + 1}位：${item.name}　${item.score}点</li>`;
+        html += `
+          <li class="top-type-item">
+            <span class="rank-badge">No.${idx + 1}</span>
+            <span class="type-label">${item.name}タイプ</span>
+            <span class="type-score">${item.score}点 / 100</span>
+          </li>
+        `;
       });
-      html += "</ol>";
+
+      html += '</ol>';
+      html += '<p class="results-subtitle">すべての体質スコア</p>';
+      html += '<div class="score-list">';
+
+      paired.forEach(item => {
+        html += `
+          <div class="score-row">
+            <span class="score-name">${item.name}</span>
+            <div class="score-bar-wrap">
+              <div class="score-bar" style="width:${item.score}%;"></div>
+            </div>
+            <span class="score-num">${item.score}点</span>
+          </div>
+        `;
+      });
+
+      html += '</div></div>'; // score-list & results-card
       topResultsEl.innerHTML = html;
     }
 
+    // allScoresEl は今回は使わないので空にしておく
     if (allScoresEl) {
-      let html = "<h3>すべての体質スコア</h3><ul>";
-      paired.forEach(item => {
-        html += `<li>${item.name}：${item.score}点</li>`;
-      });
-      html += "</ul>";
-      allScoresEl.innerHTML = html;
+      allScoresEl.innerHTML = "";
     }
 
     // 結果までスクロール
