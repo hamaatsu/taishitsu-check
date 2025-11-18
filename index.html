@@ -840,117 +840,117 @@ let radarChart = null; // レーダーチャートを保存しておく変数
   }
 
     function renderResults(scores) {
-    // スコアを高い順に並べて上位3つを取り出す
-    const paired = TYPES.map((name, idx) => ({
-      name,
-      score: scores[idx]
-    })).sort((a, b) => b.score - a.score);
+  // すでにチャートがあれば一度破棄
+  if (radarChart) {
+    radarChart.destroy();
+    radarChart = null;
+  }
 
-    const top3 = paired.slice(0, 3);
-    const topResultsEl = document.getElementById("topResults");
-    const allScoresEl = document.getElementById("allScores");
+  // スコアを高い順に並べて上位3つを取り出す
+  const paired = TYPES.map((name, idx) => ({
+    name,
+    score: scores[idx]
+  })).sort((a, b) => b.score - a.score);
 
-    if (topResultsEl) {
-      let html = '<div class="results-card">';
-      html += '  <div class="results-header">判定結果</div>';
-      html += '  <div class="results-main">';
-      html += '    <div class="results-main-left">';
-      html += '      <p class="results-main-title">あなたの体質タイプ（上位3つ）</p>';
-      html += '      <ol class="top-type-list">';
+  const top3 = paired.slice(0, 3);
+  const topResultsEl = document.getElementById("topResults");
+  const allScoresEl = document.getElementById("allScores");
 
-      top3.forEach((item, idx) => {
-        html += `
-          <li class="top-type-item">
-            <span class="rank-badge">No.${idx + 1}</span>
-            <span class="type-label">${item.name}タイプ</span>
-            <span class="type-score">${item.score}点 / 100</span>
-          </li>
-        `;
-      });
+  if (topResultsEl) {
+    let html = '<div class="results-card">';
+    html += '  <div class="results-header">判定結果</div>';
+    html += '  <div class="results-main">';
+    html += '    <div class="results-main-left">';
+    html += '      <p class="results-main-title">あなたの体質タイプ（上位3つ）</p>';
+    html += '      <ol class="top-type-list">';
 
-      html += '      </ol>';
-      html += '    </div>'; // results-main-left
+    top3.forEach((item, idx) => {
+      html += `
+        <li class="top-type-item">
+          <span class="rank-badge">No.${idx + 1}</span>
+          <span class="type-label">${item.name}タイプ</span>
+          <span class="type-score">${item.score}点 / 100</span>
+        </li>
+      `;
+    });
 
-      html += '    <div class="results-main-right">';
-      html += '      <p class="results-subtitle">体質バランス</p>';
-      html += '      <div class="radar-wrap"><canvas id="typeRadar"></canvas></div>';
-      html += '    </div>'; // results-main-right
+    html += '      </ol>';
+    html += '    </div>'; // results-main-left
 
-      html += '  </div>'; // results-main
-      html += '</div>';   // results-card
+    html += '    <div class="results-main-right">';
+    html += '      <p class="results-subtitle">体質バランス</p>';
+    html += '      <div class="radar-wrap"><canvas id="typeRadar"></canvas></div>';
+    html += '    </div>'; // results-main-right
 
-      topResultsEl.innerHTML = html;
-    }
+    html += '  </div>'; // results-main
+    html += '</div>';   // results-card
 
-    // allScores は今回は使わないので空にしておく
-    if (allScoresEl) {
-      allScoresEl.innerHTML = "";
-    }
+    topResultsEl.innerHTML = html;
+  }
 
-    // レーダーチャートを描画
-    const radarCanvas = document.getElementById("typeRadar");
-    if (radarCanvas) {
-      const ctx = radarCanvas.getContext("2d");
+  // allScores は今回は使わないので空にしておく
+  if (allScoresEl) {
+    allScoresEl.innerHTML = "";
+  }
 
-      const data = {
-        labels: TYPES,
-        datasets: [{
-          label: "体質スコア",
-          data: scores,          // 0〜100
-          fill: true,
-          backgroundColor: "rgba(201,161,106,0.18)",
-          borderColor: "#c9a16a",
-          pointBackgroundColor: "#c9a16a",
-          pointBorderColor: "#ffffff",
-          pointRadius: 3
-        }]
-      };
+  // レーダーチャートを描画（毎回新しく作る）
+  const radarCanvas = document.getElementById("typeRadar");
+  if (radarCanvas) {
+    const ctx = radarCanvas.getContext("2d");
 
-      const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false }
-        },
-        scales: {
-          r: {
-            suggestedMin: 0,
-            suggestedMax: 100,
-            ticks: {
-              stepSize: 20,
-              backdropColor: "transparent"
-            },
-            grid: {
-              color: "rgba(0,0,0,0.06)"
-            },
-            angleLines: {
-              color: "rgba(0,0,0,0.06)"
-            },
-            pointLabels: {
-              font: { size: 11 }
-            }
+    const data = {
+      labels: TYPES,
+      datasets: [{
+        label: "体質スコア",
+        data: scores,          // 0〜100
+        fill: true,
+        backgroundColor: "rgba(201,161,106,0.18)",
+        borderColor: "#c9a16a",
+        pointBackgroundColor: "#c9a16a",
+        pointBorderColor: "#ffffff",
+        pointRadius: 3
+      }]
+    };
+
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        r: {
+          suggestedMin: 0,
+          suggestedMax: 100,
+          ticks: {
+            stepSize: 20,
+            backdropColor: "透明"
+          },
+          grid: {
+            color: "rgba(0,0,0,0.06)"
+          },
+          angleLines: {
+            color: "rgba(0,0,0,0.06)"
+          },
+          pointLabels: {
+            font: { size: 11 }
           }
         }
-      };
-
-      if (radarChart) {
-        radarChart.data = data;
-        radarChart.options = options;
-        radarChart.update();
-      } else {
-        radarChart = new Chart(ctx, {
-          type: "radar",
-          data,
-          options
-        });
       }
-    }
+    };
 
-    // 結果までスクロール
-    if (topResultsEl) {
-      topResultsEl.scrollIntoView({ behavior: "smooth" });
-    }
+    radarChart = new Chart(ctx, {
+      type: "radar",
+      data,
+      options
+    });
   }
+
+  // 結果までスクロール
+  if (topResultsEl) {
+    topResultsEl.scrollIntoView({ behavior: "smooth" });
+  }
+}
 
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("diagnoseButton");
