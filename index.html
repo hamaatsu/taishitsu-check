@@ -329,9 +329,20 @@
   }
 
   /* 2行目：ボタン3つ横並び → 間延びしないよう少し小さく */
-  .back-
+  .back-nav-right {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 8px;
+    flex-wrap: nowrap;   /* 折り返さない */
+  }
 
-
+  .back-nav-link {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    white-space: nowrap; /* ボタン内で改行させない */
+  }
+}
 
 </style>
 
