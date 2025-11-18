@@ -275,9 +275,16 @@
 .back-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* PCでは右寄せ用 */
+  justify-content: space-between;
   margin-bottom: 20px;
+
+  /* ▼ ここを追加して、containerと同じ幅にする */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 16px;
 }
+
 
 .back-nav-left {
   display: flex;
@@ -349,12 +356,14 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: #ffffffee; /* 半透明の白。気になれば純白 #fff に変更OK */
-  backdrop-filter: blur(4px); /* ぼかし効果（不要なら消してOK） */
-  z-index: 9999; /* 常に最前面 */
-  padding: 10px 0;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  /* background: #ffffffee;  ← これを消す or コメントアウト */
+  background: #faf7f2;          /* body と同じ色にする */
+  backdrop-filter: none;        /* ぼかし不要なら消す */
+  z-index: 9999;
+  padding: 6px 0;
+  box-shadow: none;             /* 影も消しておくと帯っぽさが減る */
 }
+
 
 /* ヘッダー分の余白を確保（本文が隠れないように） */
 body {
