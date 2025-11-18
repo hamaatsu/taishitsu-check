@@ -5,221 +5,274 @@
   <title>体質診断チェック</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      line-height: 1.7;
-      margin: 0;
-      padding: 0;
-      background: #faf7f2;
-      color: #333;
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background: #faf7f2;
+    color: #333;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+    box-sizing: border-box;
+    background: #fff;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p.lead {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  .section {
+    margin-bottom: 24px;
+    padding: 16px 14px;
+    border-radius: 8px;
+    background: #f7f5f0;
+  }
+
+  .section h2 {
+    font-size: 1rem;
+    margin: 0 0 10px;
+    border-left: 4px solid #333;
+    padding-left: 8px;
+  }
+
+  .questions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 6px 16px;
+  }
+
+  .question-item {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .question-item input[type="checkbox"] {
+    margin-right: 6px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .actions {
+    text-align: center;
+    margin: 24px 0 8px;
+  }
+
+  #diagnoseButton {
+    display: inline-block;
+    padding: 10px 32px;
+    font-size: 1rem;
+    border-radius: 999px;
+    border: none;
+    background: #333;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #diagnoseButton:hover {
+    opacity: 0.9;
+  }
+
+  .note {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 24px;
+  }
+
+  /* 結果全体の枠 */
+  .results {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e0ddd6;
+  }
+
+  .results h3 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  /* 通常のリストだけに効かせる（top-type-list には効かせない）*/
+.results ol:not(.top-type-list),
+.results ul:not(.top-type-list) {
+  margin: 0 0 16px 1.2rem;
+  padding: 0;
+  font-size: 0.95rem;
+}
+
+/* No.1〜3 のリストは完全に左揃え */
+.top-type-list {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+  .results li {
+    margin-bottom: 4px;
+  }
+
+  /* 結果カード（薄茶の大きなカード） */
+  .results-card {
+    margin-top: 8px;
+    padding: 18px;
+    border-radius: 12px;
+    background: #fcfaf6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    border: 1px solid #ebe4d6;
+  }
+
+  .results-header {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: #aa7b4a;
+    margin-bottom: 8px;
+  }
+
+  /* 左＝3タイプ / 右＝レーダー を並べる箱 */
+  .results-main {
+    display: flex;
+    gap: 18px;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
+
+  /* 左側（3タイプ） */
+  .results-main-left {
+    flex: 1 1 52%;
+    min-width: 0;
+  }
+
+  .results-main-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+
+  /* No.1〜3のリスト */
+  .top-type-list {
+    list-style: none;
+    margin: 0 0 14px; /* 左の余白をなくす */
+    padding: 0;       /* 左の余白をなくす */
+  }
+
+  .top-type-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid #eee0cf;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+  }
+
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 48px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #333;
+    color: #fff;
+    font-size: 0.75rem;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .type-label {
+    flex: 1;
+    font-weight: 500;
+  }
+
+  .type-score {
+    font-variant-numeric: tabular-nums;
+    font-size: 0.85rem;
+    color: #555;
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  /* レーダーチャート側の枠 */
+  .results-main-right {
+    flex: 1 1 40%;
+    min-width: 0;
+    background: #ffffff;             /* 背景を白 */
+    border-radius: 12px;
+    padding: 14px 14px 18px;
+    border: 1px solid #ebe4d6;       /* 3種と同じテイストの枠線 */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .results-subtitle {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0 0 4px;
+  }
+
+  .radar-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    margin: 4px auto 0;
+    aspect-ratio: 1 / 1;
+  }
+
+  #typeRadar {
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* PCより小さいとき：質問カードは1列、結果は縦並び */
+  @media (max-width: 768px) {
+    .results-main {
+      flex-direction: column;        /* 3種 → 下にレーダー */
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
-      box-sizing: border-box;
-      background: #fff;
+    .results-main-left,
+    .results-main-right {
+      flex-basis: auto;
+      width: 100%;
     }
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    p.lead {
-      font-size: 0.95rem;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    .section {
-      margin-bottom: 24px;
-      padding: 16px 14px;
-      border-radius: 8px;
-      background: #f7f5f0;
-    }
-    .section h2 {
-      font-size: 1rem;
-      margin: 0 0 10px;
-      border-left: 4px solid #333;
-      padding-left: 8px;
-    }
-    .questions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 6px 16px;
-    }
-    .question-item {
-      display: flex;
-      align-items: flex-start;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-    .question-item input[type="checkbox"] {
-      margin-right: 6px;
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
-    .actions {
-      text-align: center;
-      margin: 24px 0 8px;
-    }
-    #diagnoseButton {
-      display: inline-block;
-      padding: 10px 32px;
-      font-size: 1rem;
-      border-radius: 999px;
-      border: none;
-      background: #333;
-      color: #fff;
-      cursor: pointer;
-    }
-    #diagnoseButton:hover {
-      opacity: 0.9;
-    }
-    .note {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #777;
-      margin-bottom: 24px;
-    }
-    .results {
-      margin-top: 24px;
-      padding-top: 16px;
-      border-top: 1px solid #e0ddd6;
-    }
-    .results h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-    .results ol,
-    .results ul {
-      margin: 0 0 16px 1.2rem;
-      padding: 0;
-      font-size: 0.95rem;
-    }
-    .results li {
-      margin-bottom: 4px;
-    }
-    @media (max-width: 599px) {
-      h1 {
-        font-size: 1.3rem;
-      }
-      .section {
-        padding: 12px 10px;
-      }
-      .questions-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-        .results-card {
+    .results-main-right {
       margin-top: 8px;
-      padding: 18px 18px 20px;
-      border-radius: 12px;
-      background: #fcfaf6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      border: 1px solid #ebe4d6;
     }
-    .results-header {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: #aa7b4a;
-      margin-bottom: 6px;
-    }
-    .results-main-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin: 0 0 10px;
-    }
-    .top-type-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 14px;
+    .results-card {
+      padding: 14px 12px 16px;
     }
     .top-type-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #eee0cf;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-    }
-    .rank-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #333;
-      color: #fff;
-      font-size: 0.75rem;
-      margin-right: 8px;
-      flex-shrink: 0;
-    }
-    .type-label {
-      flex: 1;
-      font-weight: 500;
-    }
-    .type-score {
-      font-variant-numeric: tabular-nums;
-      font-size: 0.85rem;
-      color: #555;
-      margin-left: 8px;
-      white-space: nowrap;
-    }
-    .results-subtitle {
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin: 4px 0 8px;
-    }
-    .score-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .score-row {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      column-gap: 8px;
       font-size: 0.85rem;
     }
-    .score-name {
-      min-width: 3em;
-    }
-    .score-bar-wrap {
-      position: relative;
-      height: 6px;
-      border-radius: 999px;
-      background: #eee4d6;
-      overflow: hidden;
-    }
-    .score-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      border-radius: inherit;
-      background: #c9a16a;
-    }
-    .score-num {
-      font-variant-numeric: tabular-nums;
-      min-width: 2.5em;
-      text-align: right;
-      color: #555;
-    }
-    @media (max-width: 599px) {
-      .results-card {
-        padding: 14px 12px 16px;
-      }
-      .top-type-item {
-        font-size: 0.85rem;
-      }
-    }
+  }
 
-  </style>
+  @media (max-width: 599px) {
+    h1 {
+      font-size: 1.3rem;
+    }
+    .section {
+      padding: 12px 10px;
+    }
+    .questions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
 </head>
 <body>
   <div class="container">
@@ -506,9 +559,15 @@
       <div id="topResults"></div>
       <div id="allScores"></div>
     </div>
+
   </div>
 
+<!-- Chart.js を読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
+let radarChart = null; // レーダーチャートを保存しておく変数
+
   // 8タイプの名称
   const TYPES = ["気虚", "気滞", "血虚", "瘀血", "水滞", "陰虚", "陽虚", "陽熱"];
 
@@ -622,7 +681,8 @@
     return normalizedScores;
   }
 
-  function renderResults(scores) {
+    function renderResults(scores) {
+    // スコアを高い順に並べて上位3つを取り出す
     const paired = TYPES.map((name, idx) => ({
       name,
       score: scores[idx]
@@ -634,9 +694,11 @@
 
     if (topResultsEl) {
       let html = '<div class="results-card">';
-      html += '<div class="results-header">判定結果</div>';
-      html += '<p class="results-main-title">あなたの体質タイプ（上位3つ）</p>';
-      html += '<ol class="top-type-list">';
+      html += '  <div class="results-header">判定結果</div>';
+      html += '  <div class="results-main">';
+      html += '    <div class="results-main-left">';
+      html += '      <p class="results-main-title">あなたの体質タイプ（上位3つ）</p>';
+      html += '      <ol class="top-type-list">';
 
       top3.forEach((item, idx) => {
         html += `
@@ -648,29 +710,82 @@
         `;
       });
 
-      html += '</ol>';
-      html += '<p class="results-subtitle">すべての体質スコア</p>';
-      html += '<div class="score-list">';
+      html += '      </ol>';
+      html += '    </div>'; // results-main-left
 
-      paired.forEach(item => {
-        html += `
-          <div class="score-row">
-            <span class="score-name">${item.name}</span>
-            <div class="score-bar-wrap">
-              <div class="score-bar" style="width:${item.score}%;"></div>
-            </div>
-            <span class="score-num">${item.score}点</span>
-          </div>
-        `;
-      });
+      html += '    <div class="results-main-right">';
+      html += '      <p class="results-subtitle">体質バランス</p>';
+      html += '      <div class="radar-wrap"><canvas id="typeRadar"></canvas></div>';
+      html += '    </div>'; // results-main-right
 
-      html += '</div></div>'; // score-list & results-card
+      html += '  </div>'; // results-main
+      html += '</div>';   // results-card
+
       topResultsEl.innerHTML = html;
     }
 
-    // allScoresEl は今回は使わないので空にしておく
+    // allScores は今回は使わないので空にしておく
     if (allScoresEl) {
       allScoresEl.innerHTML = "";
+    }
+
+    // レーダーチャートを描画
+    const radarCanvas = document.getElementById("typeRadar");
+    if (radarCanvas) {
+      const ctx = radarCanvas.getContext("2d");
+
+      const data = {
+        labels: TYPES,
+        datasets: [{
+          label: "体質スコア",
+          data: scores,          // 0〜100
+          fill: true,
+          backgroundColor: "rgba(201,161,106,0.18)",
+          borderColor: "#c9a16a",
+          pointBackgroundColor: "#c9a16a",
+          pointBorderColor: "#ffffff",
+          pointRadius: 3
+        }]
+      };
+
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          r: {
+            suggestedMin: 0,
+            suggestedMax: 100,
+            ticks: {
+              stepSize: 20,
+              backdropColor: "transparent"
+            },
+            grid: {
+              color: "rgba(0,0,0,0.06)"
+            },
+            angleLines: {
+              color: "rgba(0,0,0,0.06)"
+            },
+            pointLabels: {
+              font: { size: 11 }
+            }
+          }
+        }
+      };
+
+      if (radarChart) {
+        radarChart.data = data;
+        radarChart.options = options;
+        radarChart.update();
+      } else {
+        radarChart = new Chart(ctx, {
+          type: "radar",
+          data,
+          options
+        });
+      }
     }
 
     // 結果までスクロール
