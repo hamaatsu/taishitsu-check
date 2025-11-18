@@ -919,25 +919,24 @@ let radarChart = null; // レーダーチャートを保存しておく変数
     legend: { display: false }
   },
   scales: {
-    r: {
-      suggestedMin: 0,
-      suggestedMax: 100,
-      ticks: {
-        display: false,              // ★ここを追加
-        stepSize: 20,
-        backdropColor: "transparent"
-      },
-      grid: {
-        color: "rgba(0,0,0,0.06)"
-      },
-      angleLines: {
-        color: "rgba(0,0,0,0.06)"
-      },
-      pointLabels: {
-        font: { size: 11 }
-      }
+  r: {
+    suggestedMin: 0,
+    suggestedMax: 100,
+    ticks: {
+      stepSize: 20,
+      backdropColor: "transparent"
+    },
+    grid: {
+      color: "rgba(0,0,0,0.06)"
+    },
+    angleLines: {
+      color: "rgba(0,0,0,0.06)"
+    },
+    pointLabels: {
+      font: { size: 11 }
     }
   }
+}
 };
 
 
