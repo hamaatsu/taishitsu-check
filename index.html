@@ -230,18 +230,22 @@ body {
     margin: 0 0 4px;
   }
 
-  .radar-wrap {
-    position: relative;
-    width: 100%;
-    max-width: 320px;
-    margin: 4px auto 0;
-    aspect-ratio: 1 / 1;
-  }
+  /* レーダーチャートの枠（PC共通） */
+.radar-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 240px;   /* ← 320 → 240 に縮小 */
+  margin: 4px auto 0; /* 中央寄せ */
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+}
 
-  #typeRadar {
-    width: 100% !important;
-    height: 100% !important;
-  }
+/* Chart.js のキャンバス */
+#typeRadar {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;
+}
 
   /* PCより小さいとき：質問カードは1列、結果は縦並び */
   @media (max-width: 768px) {
@@ -384,11 +388,11 @@ body {
 /* スマホ幅では少し小さめにして余裕を持たせる */
 @media (max-width: 599px) {
   .results-main-right {
-    align-items: center;   /* 中央寄せ */
+    align-items: center;
   }
   .radar-wrap {
-    max-width: 260px;      /* 320px → 260px 程度に縮める */
-    margin: 4px auto 0;    /* 中央に配置 */
+    max-width: 220px;   /* ← SP はさらに少し小さく */
+    margin: 4px auto 0;
   }
 }
 
