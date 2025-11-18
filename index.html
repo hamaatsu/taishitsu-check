@@ -271,11 +271,57 @@
       grid-template-columns: 1fr;
     }
   }
+  /* 帰り口ナビ */
+.back-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+}
+
+.back-nav-label {
+  color: #777;
+  margin-right: 4px;
+}
+
+.back-nav-link {
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd0c0;
+  background: #f7f3eb;
+  text-decoration: none;
+  color: #555;
+  display: inline-block;
+}
+
+.back-nav-link:hover {
+  background: #ece3d5;
+  color: #333;
+}
+
+/* スマホで少し小さく */
+@media (max-width: 599px) {
+  .back-nav {
+    font-size: 0.8rem;
+  }
+}
+
 </style>
 
 </head>
 <body>
   <div class="container">
+    <!-- ▼ 帰り口ナビ -->
+    <nav class="back-nav">
+      <span class="back-nav-label">れいわ漢方薬局の各ページへ：</span>
+      <!-- ↓URLは実際のものに書き換えてください -->
+      <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-link">ホームページ</a>
+      <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
+      <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
+      <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+    </nav>
     <h1>体質診断チェック</h1>
     <p class="lead">
       当てはまる項目にチェックを入れてください。<br>
