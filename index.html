@@ -213,60 +213,70 @@ body {
   }
 
   /* レーダーチャート側の枠 */
-  .results-main-right {
-    flex: 1 1 40%;
-    min-width: 0;
-    background: #ffffff;             /* 背景を白 */
-    border-radius: 12px;
-    padding: 14px 14px 18px;
-    border: 1px solid #ebe4d6;       /* 3種と同じテイストの枠線 */
-    display: flex;
-    flex-direction: column;
-  }
-
+  /* レーダーチャート側の枠 */
+.results-main-right {
+  flex: 1 1 40%;
+  min-width: 0;
+  background: #ffffff;             /* 背景を白 */
+  border-radius: 12px;
+  padding: 14px 14px 18px;
+  border: 1px solid #ebe4d6;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;                /* ← ここを追加：はみ出しを隠す */
+}
   .results-subtitle {
     font-size: 0.9rem;
     font-weight: 500;
     margin: 0 0 4px;
   }
 
-  /* レーダーチャートの枠（PC共通） */
+ /* レーダーグラフの枠（PC共通） */
 .radar-wrap {
   position: relative;
   width: 100%;
-  max-width: 240px;   /* ← 320 → 240 に縮小 */
-  margin: 4px auto 0; /* 中央寄せ */
+  max-width: 240px;       /* 全体を少し小さめに固定 */
+  margin: 4px auto 0;     /* 中央寄せ */
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
+  overflow: hidden;       /* 中の canvas が大きくても枠から出さない */
 }
 
-/* Chart.js のキャンバス */
+/* Chart.js のキャンバスを必ず枠内に収める */
 #typeRadar {
   display: block;
+  width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
 }
 
   /* PCより小さいとき：質問カードは1列、結果は縦並び */
-  @media (max-width: 768px) {
-    .results-main {
-      flex-direction: column;        /* 3種 → 下にレーダー */
-    }
-    .results-main-left,
-    .results-main-right {
-      flex-basis: auto;
-      width: 100%;
-    }
-    .results-main-right {
-      margin-top: 8px;
-    }
-    .results-card {
-      padding: 14px 12px 16px;
-    }
-    .top-type-item {
-      font-size: 0.85rem;
-    }
+@media (max-width: 768px) {
+  .results-main {
+    flex-direction: column;        /* 3種 → 下にレーダー */
   }
+
+  .results-main-left,
+  .results-main-right {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  .results-main-right {
+    margin-top: 8px;
+    align-items: center;           /* 中身（レーダー）を中央寄せ */
+    box-sizing: border-box;
+  }
+
+  .results-card {
+    padding: 14px 12px 16px;
+  }
+
+  .top-type-item {
+    font-size: 0.85rem;
+  }
+}
+
 
   @media (max-width: 599px) {
     h1 {
