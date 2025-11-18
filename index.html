@@ -271,29 +271,30 @@
       grid-template-columns: 1fr;
     }
   }
-  /* 帰り口ナビ */
+  /* ▼ 帰り口ナビ（ロゴ+リンク） */
 .back-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  margin-bottom: 16px;
-  font-size: 0.85rem;
+  margin-bottom: 20px;
 }
 
-.back-nav-label {
-  color: #777;
-  margin-right: 4px;
+.back-nav-logo img {
+  height: 32px; /* ロゴの大きさ。必要なら調整OK */
+  width: auto;
+  display: block;
 }
 
+/* ボタン風リンク */
 .back-nav-link {
-  padding: 4px 10px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid #ddd0c0;
   background: #f7f3eb;
   text-decoration: none;
   color: #555;
-  display: inline-block;
+  font-size: 0.85rem;
 }
 
 .back-nav-link:hover {
@@ -301,12 +302,13 @@
   color: #333;
 }
 
-/* スマホで少し小さく */
+/* スマホ調整 */
 @media (max-width: 599px) {
-  .back-nav {
+  .back-nav-link {
     font-size: 0.8rem;
   }
 }
+
 
 </style>
 
@@ -315,13 +317,19 @@
   <div class="container">
     <!-- ▼ 帰り口ナビ -->
     <nav class="back-nav">
-      <span class="back-nav-label">れいわ漢方薬局の各ページへ：</span>
-      <!-- ↓URLは実際のものに書き換えてください -->
-      <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-link">ホームページ</a>
-      <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
-      <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
-      <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
-    </nav>
+
+    <!-- ロゴ（クリックでホームへ戻る） -->
+    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
+      <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
+    </a>
+
+    <!-- 元のURL指定をそのまま反映 -->
+    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-link">ホームページ</a>
+    <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
+    <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
+    <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+
+  </nav>
     <h1>体質診断チェック</h1>
     <p class="lead">
       当てはまる項目にチェックを入れてください。<br>
