@@ -271,19 +271,28 @@
       grid-template-columns: 1fr;
     }
   }
-  /* 帰り口ナビ（PC共通） */
+ /* ▼ 帰り口ナビ（PC共通） */
 .back-nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
   align-items: center;
+  justify-content: space-between; /* PCでは右寄せ用 */
   margin-bottom: 20px;
+}
+
+.back-nav-left {
+  display: flex;
+  align-items: center;
 }
 
 .back-nav-logo img {
   height: 32px;
   width: auto;
   display: block;
+}
+
+.back-nav-right {
+  display: flex;
+  gap: 12px;
 }
 
 .back-nav-link {
@@ -301,19 +310,26 @@
   color: #333;
 }
 
-/* SP：縦にはせず、少し小さくして収める */
+/* ▼ SP（599px以下） */
 @media (max-width: 599px) {
+
   .back-nav {
+    flex-direction: column;     /* SPでは縦に積む */
+    align-items: flex-start;
     gap: 6px;
   }
+
+  /* 1行目：ロゴだけ */
+  .back-nav-left {
+    width: 100%;
+  }
+
   .back-nav-logo img {
     height: 26px;
   }
-  .back-nav-link {
-    font-size: 0.75rem;
-    padding: 4px 8px;
-  }
-}
+
+  /* 2行目：ボタン3つ横並び → 間延びしないよう少し小さく */
+  .back-
 
 
 
@@ -325,15 +341,19 @@
     <!-- ▼ 帰り口ナビ -->
    <nav class="back-nav">
 
-  <!-- ロゴ（ホームへ戻る） -->
-  <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
-    <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
-  </a>
+  <!-- 1行目：ロゴ -->
+  <div class="back-nav-left">
+    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
+      <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
+    </a>
+  </div>
 
-  <!-- 3つの帰り口だけ残す -->
-  <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
-  <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
-  <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+  <!-- 2行目：3つのボタン（PCでは右寄せ） -->
+  <div class="back-nav-right">
+    <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
+    <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
+    <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+  </div>
 
 </nav>
 
