@@ -839,8 +839,8 @@ let radarChart = null; // レーダーチャートを保存しておく変数
     return normalizedScores;
   }
 
-    function renderResults(scores) {
-  // すでにチャートがあれば一度破棄
+   function renderResults(scores) {
+  // ★ 前回のチャートがあれば一度破棄する（ここだけ新しく追加）
   if (radarChart) {
     radarChart.destroy();
     radarChart = null;
@@ -924,7 +924,7 @@ let radarChart = null; // レーダーチャートを保存しておく変数
           suggestedMax: 100,
           ticks: {
             stepSize: 20,
-            backdropColor: "透明"
+            backdropColor: "transparent" // ← ここも英語のままに戻す
           },
           grid: {
             color: "rgba(0,0,0,0.06)"
@@ -951,6 +951,7 @@ let radarChart = null; // レーダーチャートを保存しておく変数
     topResultsEl.scrollIntoView({ behavior: "smooth" });
   }
 }
+
 
   document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("diagnoseButton");
