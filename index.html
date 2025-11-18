@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>体質診断チェック</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0;
+      background: #faf7f2;
+      color: #333;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    p.lead {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+    .section {
+      margin-bottom: 24px;
+      padding: 16px 14px;
+      border-radius: 8px;
+      background: #f7f5f0;
+    }
+    .section h2 {
+      font-size: 1rem;
+      margin: 0 0 10px;
+      border-left: 4px solid #333;
+      padding-left: 8px;
+    }
+    .questions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 6px 16px;
+    }
+    .question-item {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .question-item input[type="checkbox"] {
+      margin-right: 6px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .actions {
+      text-align: center;
+      margin: 24px 0 8px;
+    }
+    #diagnoseButton {
+      display: inline-block;
+      padding: 10px 32px;
+      font-size: 1rem;
+      border-radius: 999px;
+      border: none;
+      background: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+    #diagnoseButton:hover {
+      opacity: 0.9;
+    }
+    .note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 24px;
+    }
+    .results {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid #e0ddd6;
+    }
+    .results h3 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
+    .results ol,
+    .results ul {
+      margin: 0 0 16px 1.2rem;
+      padding: 0;
+      font-size: 0.95rem;
+    }
+    .results li {
+      margin-bottom: 4px;
+    }
+    @media (max-width: 599px) {
+      h1 {
+        font-size: 1.3rem;
+      }
+      .section {
+        padding: 12px 10px;
+      }
+      .questions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>体質診断チェック</h1>
+    <p class="lead">
+      当てはまる項目にチェックを入れてください。<br>
+      すべての項目に答える必要はありませんが、できるだけ近いものを選んでいただくと体質判定の精度が上がります。
+    </p>
+
+    <!-- 感情・眠り -->
+    <div class="section">
+      <h2>感情・眠り</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_irritability">
+          <span>イライラしやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_anger">
+          <span>怒りっぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_anxiety">
+          <span>不安になりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_tension">
+          <span>緊張しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_sigh_chest">
+          <span>ため息が多い／胸がつかえる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_many_dreams">
+          <span>夢が多い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_shallow">
+          <span>眠りが浅い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_daytime_sleepy">
+          <span>日中に眠くなりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_hot_insomnia">
+          <span>暑くて寝つけない</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 体の傾向 -->
+    <div class="section">
+      <h2>体の傾向</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_cold_handsfeet">
+          <span>寒がり／手足が冷える</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_facial_flushing">
+          <span>顔がのぼせやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_upper_hot_lower_cold">
+          <span>上半身が熱く下半身が冷える</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_edema">
+          <span>むくみやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_heavy">
+          <span>体が重だるい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_sweat">
+          <span>汗をかきやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_easy_fatigue">
+          <span>少し動くと疲れやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_pale_face">
+          <span>顔色が悪い／血の気が少ない</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_short_breath">
+          <span>息切れしやすい</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 体の状態 -->
+    <div class="section">
+      <h2>体の状態</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_stiff_shoulder_neck">
+          <span>肩や首がこりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_fixed_pain">
+          <span>痛みが同じ場所にとどまる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_numb_handsfeet">
+          <span>手足がしびれる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_dry_skin">
+          <span>乾燥肌でかさつく</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_spots_dullness">
+          <span>シミ・くすみが気になる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_acne">
+          <span>ニキビ／吹き出物が出やすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_inflammation_redness">
+          <span>炎症や赤みが出やすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_hot_flash">
+          <span>ほてりを感じやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_night_sweat">
+          <span>夜に寝汗をかく</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 舌・口・目 -->
+    <div class="section">
+      <h2>舌・口・目</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_pale">
+          <span>舌が白っぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_red">
+          <span>舌が赤い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_teethmarks">
+          <span>舌に歯の跡がつく</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_coat_white_thick">
+          <span>舌苔が白く厚い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_coat_yellow_thick">
+          <span>舌苔が黄色く厚い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_dry_cracked">
+          <span>舌が乾き／ひび割れる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_mouth_dry">
+          <span>口が渇きやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_eye_fatigue">
+          <span>目が疲れやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_eye_red">
+          <span>目が充血しやすい</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 消化・便通・食欲 -->
+    <div class="section">
+      <h2>消化・便通・食欲</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_poor_appetite">
+          <span>食欲が落ちやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_postprandial_sleepy">
+          <span>食後に眠くなる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_bloating">
+          <span>お腹が張りやすい／胃もたれ</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_soft_stool">
+          <span>便が柔らかい／水っぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_diarrhea">
+          <span>下痢しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_constipation">
+          <span>便秘しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_alt_diarrhea_constipation">
+          <span>下痢と便秘をくり返す</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 月経（該当者のみ） -->
+    <div class="section">
+      <h2>月経（該当者のみ）</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_short_cycle">
+          <span>月経周期が短い（25日以内）</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_long_cycle">
+          <span>月経周期が長い（35日以上）</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_irregular">
+          <span>月経周期が不安定</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_heavy">
+          <span>経血量が多い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_light">
+          <span>経血量が少ない</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_bright_red">
+          <span>経血が鮮やかな赤</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_dark_clots">
+          <span>経血が暗い／黒っぽい・塊がある</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_strong_pain">
+          <span>月経痛が強い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_pain_relieve_warm">
+          <span>温めると痛みがやわらぐ</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_pain_worse_cold">
+          <span>冷えると痛みが強くなる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_breast">
+          <span>月経前に胸が張る</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_irritability">
+          <span>月経前にイライラしやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_edema">
+          <span>月経前にむくみが出る</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="diagnoseButton">体質を診断する</button>
+    </div>
+    <div class="note">
+      チェック内容は送信されず、このページ内だけで判定されます。
+    </div>
+
+    <div class="results">
+      <div id="topResults"></div>
+      <div id="allScores"></div>
+    </div>
+  </div>
+
+    <script>
+  // 8タイプの名称
+  const TYPES = ["気虚", "気滞", "血虚", "瘀血", "水滞", "陰虚", "陽虚", "陽熱"];
+
+  // 質問ごとの配点表
+  // キー：data-qid の値
+  // 値： [気虚, 気滞, 血虚, 瘀血, 水滞, 陰虚, 陽虚, 陽熱]
+  const QUESTION_SCORES = {
+    // 【1】感情・眠り
+    q_emotion_irritability:      [0, 3, 0, 1, 0, 0, 0, 2],
+    q_emotion_anger:             [0, 3, 0, 1, 0, 0, 0, 2],
+    q_emotion_anxiety:           [2, 1, 1, 0, 0, 1, 1, 0],
+    q_emotion_tension:           [1, 1, 1, 0, 0, 1, 0, 0],
+    q_emotion_sigh_chest:        [0, 3, 0, 1, 0, 0, 0, 0],
+    q_sleep_many_dreams:         [1, 1, 1, 0, 0, 2, 0, 0],
+    q_sleep_shallow:             [1, 0, 1, 0, 0, 2, 0, 1],
+    q_sleep_daytime_sleepy:      [2, 0, 1, 0, 0, 0, 1, 0],
+    q_sleep_hot_insomnia:        [0, 0, 0, 0, 0, 1, 0, 3],
+
+    // 【2】体の傾向
+    q_tendency_cold_handsfeet:   [1, 0, 0, 0, 1, 0, 3, 0],
+    q_tendency_facial_flushing:  [0, 1, 0, 0, 0, 0, 0, 3],
+    q_tendency_upper_hot_lower_cold: [0, 1, 0, 0, 1, 0, 1, 3],
+    q_tendency_edema:            [0, 0, 0, 0, 3, 0, 1, 0],
+    q_tendency_heavy:            [1, 1, 0, 0, 3, 0, 1, 0],
+    q_tendency_sweat:            [0, 0, 0, 0, 0, 0, 0, 2],
+    q_tendency_easy_fatigue:     [3, 0, 0, 0, 1, 0, 2, 0],
+    q_tendency_pale_face:        [0, 0, 3, 1, 0, 0, 0, 0],
+    q_tendency_short_breath:     [3, 0, 1, 0, 0, 0, 1, 0],
+
+    // 【3】体の状態
+    q_state_stiff_shoulder_neck: [0, 2, 0, 2, 0, 0, 0, 0],
+    q_state_fixed_pain:          [0, 0, 0, 3, 0, 0, 0, 0],
+    q_state_numb_handsfeet:      [0, 0, 2, 1, 0, 0, 0, 0],
+    q_state_dry_skin:            [0, 0, 1, 0, 0, 3, 0, 1],
+    q_state_spots_dullness:      [0, 0, 2, 2, 0, 0, 0, 0],
+    q_state_acne:                [0, 1, 0, 2, 0, 0, 0, 3],
+    q_state_inflammation_redness:[0, 0, 0, 1, 0, 0, 0, 3],
+    q_state_hot_flash:           [0, 0, 0, 0, 0, 2, 0, 3],
+    q_state_night_sweat:         [0, 0, 0, 0, 0, 3, 0, 2],
+
+    // 【4】舌・口・目
+    q_tongue_pale:               [1, 0, 0, 0, 2, 0, 2, 0],
+    q_tongue_red:                [0, 0, 0, 0, 0, 1, 0, 3],
+    q_tongue_teethmarks:         [1, 0, 0, 0, 1, 0, 2, 0],
+    q_tongue_coat_white_thick:   [0, 0, 0, 0, 3, 0, 1, 0],
+    q_tongue_coat_yellow_thick:  [0, 0, 0, 1, 0, 0, 0, 3],
+    q_tongue_dry_cracked:        [0, 0, 0, 0, 0, 3, 0, 1],
+    q_mouth_dry:                 [0, 0, 0, 0, 0, 3, 0, 1],
+    q_eye_fatigue:               [1, 1, 2, 0, 0, 0, 0, 0],
+    q_eye_red:                   [0, 0, 0, 0, 0, 0, 0, 3],
+
+    // 【5】消化・便通・食欲
+    q_digest_poor_appetite:      [2, 0, 1, 0, 0, 0, 2, 0],
+    q_digest_postprandial_sleepy:[2, 0, 0, 0, 2, 0, 1, 0],
+    q_digest_bloating:           [1, 2, 0, 0, 2, 0, 0, 0],
+    q_digest_soft_stool:         [0, 0, 0, 0, 2, 0, 2, 0],
+    q_digest_diarrhea:           [0, 0, 0, 0, 1, 0, 3, 0],
+    q_digest_constipation:       [0, 2, 0, 2, 0, 0, 0, 1],
+    q_digest_alt_diarrhea_constipation:[0, 2, 0, 1, 1, 0, 1, 0],
+
+    // 【6】月経（該当者のみ）
+    q_menses_short_cycle:        [0, 0, 0, 0, 0, 0, 0, 3],
+    q_menses_long_cycle:         [2, 0, 2, 0, 0, 1, 2, 0],
+    q_menses_irregular:          [1, 2, 1, 0, 0, 0, 1, 0],
+    q_menses_heavy:              [0, 0, 0, 1, 0, 0, 0, 2],
+    q_menses_light:              [2, 0, 3, 0, 0, 1, 1, 0],
+    q_menses_bright_red:         [0, 0, 0, 0, 0, 0, 0, 2],
+    q_menses_dark_clots:         [0, 0, 0, 3, 0, 0, 0, 0],
+    q_menses_strong_pain:        [0, 1, 0, 3, 0, 0, 0, 1],
+    q_menses_pain_relieve_warm:  [0, 0, 0, 2, 0, 0, 1, 0],
+    q_menses_pain_worse_cold:    [0, 0, 0, 2, 1, 0, 2, 0],
+    q_menses_premenstrual_breast:[0, 2, 0, 0, 1, 0, 0, 0],
+    q_menses_premenstrual_irritability:[0, 3, 0, 1, 0, 0, 0, 2],
+    q_menses_premenstrual_edema: [0, 1, 0, 0, 3, 0, 1, 0]
+  };
+
+  function calculateScores() {
+    const rawScores = new Array(TYPES.length).fill(0);
+    const maxScores = new Array(TYPES.length).fill(0);
+
+    // 質問ごとの理論上の最大値（正規化用）
+    Object.values(QUESTION_SCORES).forEach(arr => {
+      arr.forEach((val, idx) => {
+        if (val > 0) maxScores[idx] += val;
+      });
+    });
+
+    const checkedInputs = document.querySelectorAll('input[data-qid]:checked');
+
+    // 何もチェックされていないときは警告
+    if (checkedInputs.length === 0) {
+      alert("少なくとも1つは当てはまる項目にチェックを入れてください。");
+      return null;
+    }
+
+    checkedInputs.forEach(input => {
+      const qid = input.getAttribute('data-qid');
+      const scoreArray = QUESTION_SCORES[qid];
+      if (!scoreArray) return;
+      scoreArray.forEach((val, idx) => {
+        rawScores[idx] += val;
+      });
+    });
+
+    const normalizedScores = rawScores.map((val, idx) => {
+      const max = maxScores[idx];
+      if (max === 0) return 0;
+      return Math.round((val / max) * 100);
+    });
+
+    return normalizedScores;
+  }
+
+  function renderResults(scores) {
+    const paired = TYPES.map((name, idx) => ({
+      name,
+      score: scores[idx]
+    })).sort((a, b) => b.score - a.score);
+
+    const top3 = paired.slice(0, 3);
+    const topResultsEl = document.getElementById("topResults");
+    const allScoresEl = document.getElementById("allScores");
+
+    if (topResultsEl) {
+      let html = "<h3>あなたの体質タイプ（上位3つ）</h3><ol>";
+      top3.forEach((item, idx) => {
+        html += `<li>${idx + 1}位：${item.name}　${item.score}点</li>`;
+      });
+      html += "</ol>";
+      topResultsEl.innerHTML = html;
+    }
+
+    if (allScoresEl) {
+      let html = "<h3>すべての体質スコア</h3><ul>";
+      paired.forEach(item => {
+        html += `<li>${item.name}：${item.score}点</li>`;
+      });
+      html += "</ul>";
+      allScoresEl.innerHTML = html;
+    }
+
+    // 結果までスクロール
+    if (topResultsEl) {
+      topResultsEl.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("diagnoseButton");
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const scores = calculateScores();
+      if (!scores) return;
+      renderResults(scores);
+    });
+  });
+  </script>
