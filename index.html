@@ -13,6 +13,10 @@
     background: #faf7f2;
     color: #333;
   }
+body {
+  padding-top: 70px;
+}
+
 
   .container {
     max-width: 900px;
@@ -274,17 +278,13 @@
  /* ▼ 帰り口ナビ（PC共通） */
 .back-nav {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
 
-  /* ▼ ここを追加して、containerと同じ幅にする */
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0 16px;
+  max-width: 900px;      /* ← コンテンツ幅に揃える */
+  margin: 0 auto;        /* ← 中央に配置 */
+  padding: 0 16px;       /* ← 左右の余白 */
 }
-
 
 .back-nav-left {
   display: flex;
@@ -356,13 +356,12 @@
   top: 0;
   left: 0;
   width: 100%;
-  /* background: #ffffffee;  ← これを消す or コメントアウト */
-  background: #faf7f2;          /* body と同じ色にする */
-  backdrop-filter: none;        /* ぼかし不要なら消す */
+  background: #ffffff;   /* ← 白背景に */
   z-index: 9999;
-  padding: 6px 0;
-  box-shadow: none;             /* 影も消しておくと帯っぽさが減る */
+  padding: 12px 0;       /* ← 上下に適度な余白（真ん中配置っぽく見せる） */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
 }
+
 
 
 /* ヘッダー分の余白を確保（本文が隠れないように） */
