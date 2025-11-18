@@ -271,7 +271,7 @@
       grid-template-columns: 1fr;
     }
   }
-  /* ▼ 帰り口ナビ（ロゴ+リンク） */
+  /* 帰り口ナビ（PC共通） */
 .back-nav {
   display: flex;
   flex-wrap: wrap;
@@ -281,12 +281,11 @@
 }
 
 .back-nav-logo img {
-  height: 32px; /* ロゴの大きさ。必要なら調整OK */
+  height: 32px;
   width: auto;
   display: block;
 }
 
-/* ボタン風リンク */
 .back-nav-link {
   padding: 6px 12px;
   border-radius: 999px;
@@ -302,12 +301,20 @@
   color: #333;
 }
 
-/* スマホ調整 */
+/* SP：縦にはせず、少し小さくして収める */
 @media (max-width: 599px) {
+  .back-nav {
+    gap: 6px;
+  }
+  .back-nav-logo img {
+    height: 26px;
+  }
   .back-nav-link {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
+    padding: 4px 8px;
   }
 }
+
 
 
 </style>
@@ -316,20 +323,21 @@
 <body>
   <div class="container">
     <!-- ▼ 帰り口ナビ -->
-    <nav class="back-nav">
+   <nav class="back-nav">
 
-    <!-- ロゴ（クリックでホームへ戻る） -->
-    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
-      <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
-    </a>
+  <!-- ロゴ（ホームへ戻る） -->
+  <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
+    <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
+  </a>
 
-    <!-- 元のURL指定をそのまま反映 -->
-    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-link">ホームページ</a>
-    <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
-    <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
-    <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+  <!-- 3つの帰り口だけ残す -->
+  <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
+  <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
+  <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
 
-  </nav>
+</nav>
+
+
     <h1>体質診断チェック</h1>
     <p class="lead">
       当てはまる項目にチェックを入れてください。<br>
