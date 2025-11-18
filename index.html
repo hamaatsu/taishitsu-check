@@ -369,6 +369,30 @@ body {
   padding-top: 70px; /* ヘッダーの高さに合わせて調整可 */
 }
 
+/* ▼ レーダーグラフのはみ出し対策（SP用） */
+.radar-wrap {
+  box-sizing: border-box;
+}
+
+/* Chart.js のキャンバスを必ず枠内に収める */
+#typeRadar {
+  display: block;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* スマホ幅では少し小さめにして余裕を持たせる */
+@media (max-width: 599px) {
+  .results-main-right {
+    align-items: center;   /* 中央寄せ */
+  }
+  .radar-wrap {
+    max-width: 260px;      /* 320px → 260px 程度に縮める */
+    margin: 4px auto 0;    /* 中央に配置 */
+  }
+}
+
+
 </style>
 
 </head>
