@@ -343,6 +343,23 @@
     white-space: nowrap; /* ボタン内で改行させない */
   }
 }
+/* ▼ 固定ヘッダー化 */
+.back-nav-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #ffffffee; /* 半透明の白。気になれば純白 #fff に変更OK */
+  backdrop-filter: blur(4px); /* ぼかし効果（不要なら消してOK） */
+  z-index: 9999; /* 常に最前面 */
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+/* ヘッダー分の余白を確保（本文が隠れないように） */
+body {
+  padding-top: 70px; /* ヘッダーの高さに合わせて調整可 */
+}
 
 </style>
 
@@ -350,23 +367,25 @@
 <body>
   <div class="container">
     <!-- ▼ 帰り口ナビ -->
-   <nav class="back-nav">
+   <div class="back-nav-wrapper">
+  <nav class="back-nav">
 
-  <!-- 1行目：ロゴ -->
-  <div class="back-nav-left">
-    <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
-      <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
-    </a>
-  </div>
+    <!-- 1行目：ロゴ -->
+    <div class="back-nav-left">
+      <a href="https://reiwa-ph.com/" target="_blank" class="back-nav-logo">
+        <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
+      </a>
+    </div>
 
-  <!-- 2行目：3つのボタン（PCでは右寄せ） -->
-  <div class="back-nav-right">
-    <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
-    <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
-    <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
-  </div>
+    <!-- 2行目：右側の3ボタン -->
+    <div class="back-nav-right">
+      <a href="https://shop.reiwa-ph.com/" target="_blank" class="back-nav-link">オンラインショップ</a>
+      <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank" class="back-nav-link">漢方ブログ</a>
+      <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="back-nav-link">漢方相談</a>
+    </div>
 
-</nav>
+  </nav>
+</div>
 
 
     <h1>体質診断チェック</h1>
