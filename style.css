@@ -466,3 +466,50 @@ body {
     display: inline-block;
   }
 }
+
+/* ▼ 漢方相談CTAセクション */
+.consult-section {
+  margin-top: 32px;
+  padding: 24px 20px;
+  text-align: center;
+  background: #f7f5f0;
+  border-radius: 10px;
+  border: 1px solid #ebe4d6;
+}
+
+.consult-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0 0 16px;
+  line-height: 1.7;
+}
+
+.consult-btn {
+  display: inline-block;
+  padding: 10px 28px;
+  background: #4e3d33;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}
+
+.consult-btn:hover {
+  opacity: 0.9;
+}
+
+/* SP 調整 */
+@media (max-width: 599px) {
+  .consult-section {
+    padding: 20px 16px;
+  }
+
+  .consult-text {
+    font-size: 0.9rem;
+  }
+
+  .consult-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+}

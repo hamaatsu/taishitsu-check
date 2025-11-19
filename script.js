@@ -227,6 +227,12 @@
         infoArea.style.display = "block";
       }
 
+      // ▼ 相談CTAを表示
+const consultCTA = document.getElementById("consultCTA");
+if (consultCTA) {
+  consultCTA.style.display = "block";
+}
+
       // 結果までスクロール
       if (topResultsEl) {
         topResultsEl.scrollIntoView({ behavior: "smooth" });
