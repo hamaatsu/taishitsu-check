@@ -451,6 +451,49 @@
         row-gap: 10px;
       }
     }
+    /* ▼ フッター（コンテナ幅 900px 内） */
+.footer-section {
+  margin-top: 40px;
+  padding: 24px 0 20px;
+  border-top: 1px solid #e0ddd6;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.footer-logo img {
+  height: 28px;
+  width: auto;
+  margin-bottom: 12px;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  margin: 0 12px;
+  color: #555;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+.footer-copy {
+  margin: 4px 0 0;
+  color: #777;
+  font-size: 0.75rem;
+}
+
+/* SP（スマホ）調整 */
+@media (max-width: 599px) {
+  .footer-links a {
+    display: inline-blo
+
   </style>
 </head>
 
@@ -760,7 +803,7 @@
     <!-- ▼ 8つの体質エリア（結果の下に表示） -->
     <div id="taishitsuInfoArea">
       <div class="taishitsu-section">
-        <p class="taishitsu-title">8つの体質</p>
+        <p class="taishitsu-title">8つの体質を見る</p>
         <div class="taishitsu-grid">
           <div class="taishitsu-item">
             <img src="./image/kikyo.webp" alt="気虚">
@@ -797,6 +840,21 @@
         </div>
       </div>
     </div>
+          <!-- ▼ フッター（ヘッダーと同じ内容） -->
+      <footer class="footer-section">
+        <p class="footer-logo">
+          <img src="./image/reiwakampologo_brown.png" alt="れいわ漢方薬局ロゴ">
+        </p>
+
+        <div class="footer-links">
+          <a href="https://shop.reiwa-ph.com/" target="_blank">オンラインショップ</a>
+          <a href="https://reiwa-ph.com/kampoph/concerns" target="_blank">漢方ブログ</a>
+          <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank">漢方相談</a>
+        </div>
+
+        <p class="footer-copy">© 2025 れいわ漢方薬局</p>
+      </footer>
+
   </div><!-- /.container -->
 
   <!-- Chart.js を読み込み -->
