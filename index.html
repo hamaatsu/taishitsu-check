@@ -2,8 +2,30 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>体質診断チェック</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ▼ Title -->
+  <title>無料体質診断｜気虚・血虚・瘀血などがわかる無料チェック丨れいわ漢方薬局</title>
+
+  <!-- ▼ favicon -->
+  <link rel="icon" href="./image/reiwakaicon.png" type="image/png" />
+
+  <!-- ▼ meta description -->
+  <meta name="description" content="簡単なチェックで気虚・血虚・瘀血などの体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+
+  <!-- ▼ OGP -->
+  <meta property="og:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
+  <meta property="og:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://taishitsu.reiwa-ph.com/" />
+  <meta property="og:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
+  <meta property="og:site_name" content="れいわ漢方薬局" />
+
+  <!-- ▼ Twitterカード -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
+  <meta name="twitter:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+  <meta name="twitter:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
+
   <style>
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
@@ -213,7 +235,6 @@ body {
   }
 
   /* レーダーチャート側の枠 */
-  /* レーダーチャート側の枠 */
 .results-main-right {
   flex: 1 1 40%;
   min-width: 0;
@@ -403,6 +424,36 @@ body {
   .radar-wrap {
     max-width: 220px;   /* ← SP はさらに少し小さく */
     margin: 4px auto 0;
+  }
+}
+.taishitsu-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 16px;
+  padding: 16px 8px;
+}
+
+.taishitsu-item {
+  text-align: center;
+}
+
+.taishitsu-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.taishitsu-item p {
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+/* SPは4列×2行 */
+@media (max-width: 768px) {
+  .taishitsu-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
   }
 }
 
@@ -715,6 +766,52 @@ body {
 
     <div class="results">
       <div id="topResults"></div>
+      <!-- ★ 体質アイコンエリアをここに追加する ★ -->
+  <div id="taishitsuInfoArea" class="taishitsu-grid" style="display:none;">
+
+    <a class="taishitsu-item">
+      <img src="./image/kikyo.webp" alt="気虚">
+      <p>気虚</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/kitai.webp" alt="気滞">
+      <p>気滞</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/kekkyo.webp" alt="血虚">
+      <p>血虚</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/oketsu.webp" alt="瘀血">
+      <p>瘀血</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/suitai.webp" alt="水滞">
+      <p>水滞</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/yokyo.webp" alt="陽虚">
+      <p>陽虚</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/inkyo.webp" alt="陰虚">
+      <p>陰虚</p>
+    </a>
+
+    <a class="taishitsu-item">
+      <img src="./image/yonetsu.webp" alt="陽熱">
+      <p>陽熱</p>
+    </a>
+
+  </div>
+  <!-- ★ ここまで追加 ★ -->
+
       <div id="allScores"></div>
     </div>
 
@@ -948,6 +1045,12 @@ let radarChart = null; // レーダーチャートを保存しておく変数
       options
     });
   }
+    // ★★★ ここで体質バッジエリアを表示させる ★★★
+  const infoArea = document.getElementById("taishitsuInfoArea");
+  if (infoArea) {
+    infoArea.style.display = "grid";
+  }
+  // ★★★ ここまで追加 ★★★
 
   // 結果までスクロール
   if (topResultsEl) {
