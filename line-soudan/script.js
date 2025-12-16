@@ -253,8 +253,24 @@ if (consultCTA) {
          resultText = top3.slice(0, 2).map(r => r.name).join('・');
       }
 
+     // ▼▼▼ 基本情報を取得 ▼▼▼
+      const age = document.getElementById("userAge").value || "未入力";
+      const gender = document.getElementById("userGender").value || "未入力";
+      const pref = document.getElementById("userPref").value || "未入力";
+      const symptom = document.getElementById("userSymptom").value || "なし";
+      const duration = document.getElementById("userDuration").value || "不明";
+      const medicine = document.getElementById("userMedicine").value || "なし";
+
       // 3. LINEに送るメッセージの文章を作る
-      const messageText = `【体質診断結果】
+      const messageText = `【基本情報】
+年齢：${age}歳
+性別：${gender}
+地域：${pref}
+困っている症状：${symptom}
+いつから：${duration}
+服用薬：${medicine}
+
+【体質診断結果】
 タイプ：${resultText}
 
 【気になった症状】
@@ -262,10 +278,10 @@ ${symptomList.map(s => '・' + s).join('\n')}
 
 この内容で漢方相談をお願いします。`;
 
-      // 4. ★あなたのLINE IDはそのままでOKです★
-      const yourLineId = "@281clqmv"; // ←ここだけはご自身のアカウントIDのままにしてください
+      // 4. あなたのLINE ID（変更済みならそのままでOK）
+      const yourLineId = "@281clqmv"; 
 
-      // 5. URLを作ってボタンにセットする
+      // （以下、URL生成とボタンセット処理はそのまま）
       const encodedMsg = encodeURIComponent(messageText);
       const lineUrl = `https://line.me/R/oaMessage/${yourLineId}/?${encodedMsg}`;
       
@@ -273,7 +289,7 @@ ${symptomList.map(s => '・' + s).join('\n')}
       if (lineBtn) {
         lineBtn.href = lineUrl;
       }
-      // ▲▲▲ ここまで追加 ▲▲▲
+      // ▲▲▲ ここまで ▲▲▲
 
       // 結果までスクロール
       if (topResultsEl) {

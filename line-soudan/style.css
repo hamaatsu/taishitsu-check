@@ -512,3 +512,38 @@ body {
     max-width: 260px;
   }
 }
+
+/* ▼▼▼ 基本情報フォーム用CSS ▼▼▼ */
+.basic-info-section .form-group {
+  margin-bottom: 20px;
+}
+
+.basic-info-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #57443a;
+}
+
+.basic-info-section input[type="text"],
+.basic-info-section input[type="number"],
+.basic-info-section select,
+.basic-info-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px; /* スマホでズームしないサイズ */
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.basic-info-section textarea {
+  resize: vertical;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+}
