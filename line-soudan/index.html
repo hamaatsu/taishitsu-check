@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ▼ Title -->
+  <title>無料体質診断｜気虚・血虚・瘀血などがわかる無料チェック丨れいわ漢方薬局</title>
+
+  <!-- ▼ favicon -->
+  <link rel="icon" href="./image/reiwakaicon.png" type="image/png" />
+
+  <!-- ▼ meta description -->
+  <meta name="description" content="簡単なチェックで気虚・血虚・瘀血などの体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+
+  <!-- ▼ OGP -->
+  <meta property="og:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
+  <meta property="og:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://taishitsu.reiwa-ph.com/" />
+  <meta property="og:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
+  <meta property="og:site_name" content="れいわ漢方薬局" />
+
+  <!-- ▼ Twitterカード -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
+  <meta name="twitter:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
+  <meta name="twitter:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
+
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>体質診断チェック</h1>
+    <p class="lead">
+      当てはまる項目にチェックを入れてください。<br>
+      すべての項目に答える必要はありませんが、できるだけ近いものを選んでいただくと体質判定の精度が上がります。
+    </p>
+
+    <!-- 感情・眠り -->
+    <div class="section">
+      <h2>感情・眠り</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_irritability">
+          <span>イライラしやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_anger">
+          <span>怒りっぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_anxiety">
+          <span>不安になりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_tension">
+          <span>緊張しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_emotion_sigh_chest">
+          <span>ため息が多い／胸がつかえる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_many_dreams">
+          <span>夢が多い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_shallow">
+          <span>眠りが浅い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_daytime_sleepy">
+          <span>日中に眠くなりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_sleep_hot_insomnia">
+          <span>暑くて寝つけない</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 体の傾向 -->
+    <div class="section">
+      <h2>体の傾向</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_cold_handsfeet">
+          <span>寒がり／手足が冷える</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_facial_flushing">
+          <span>顔がのぼせやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_upper_hot_lower_cold">
+          <span>上半身が熱く下半身が冷える</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_edema">
+          <span>むくみやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_heavy">
+          <span>体が重だるい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_sweat">
+          <span>汗をかきやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_easy_fatigue">
+          <span>少し動くと疲れやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_pale_face">
+          <span>顔色が悪い／血の気が少ない</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tendency_short_breath">
+          <span>息切れしやすい</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 体の状態 -->
+    <div class="section">
+      <h2>体の状態</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_stiff_shoulder_neck">
+          <span>肩や首がこりやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_fixed_pain">
+          <span>痛みが同じ場所にとどまる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_numb_handsfeet">
+          <span>手足がしびれる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_dry_skin">
+          <span>乾燥肌でかさつく</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_spots_dullness">
+          <span>シミ・くすみが気になる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_acne">
+          <span>ニキビ／吹き出物が出やすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_inflammation_redness">
+          <span>炎症や赤みが出やすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_hot_flash">
+          <span>ほてりを感じやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_state_night_sweat">
+          <span>夜に寝汗をかく</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 舌・口・目 -->
+    <div class="section">
+      <h2>舌・口・目</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_pale">
+          <span>舌が白っぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_red">
+          <span>舌が赤い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_teethmarks">
+          <span>舌に歯の跡がつく</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_coat_white_thick">
+          <span>舌苔が白く厚い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_coat_yellow_thick">
+          <span>舌苔が黄色く厚い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_tongue_dry_cracked">
+          <span>舌が乾き／ひび割れる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_mouth_dry">
+          <span>口が渇きやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_eye_fatigue">
+          <span>目が疲れやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_eye_red">
+          <span>目が充血しやすい</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 消化・便通・食欲 -->
+    <div class="section">
+      <h2>消化・便通・食欲</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_poor_appetite">
+          <span>食欲が落ちやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_postprandial_sleepy">
+          <span>食後に眠くなる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_bloating">
+          <span>お腹が張りやすい／胃もたれ</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_soft_stool">
+          <span>便が柔らかい／水っぽい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_diarrhea">
+          <span>下痢しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_constipation">
+          <span>便秘しやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_digest_alt_diarrhea_constipation">
+          <span>下痢と便秘をくり返す</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- 月経（該当者のみ） -->
+    <div class="section">
+      <h2>月経（該当者のみ）</h2>
+      <div class="questions-grid">
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_short_cycle">
+          <span>月経周期が短い（25日以内）</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_long_cycle">
+          <span>月経周期が長い（35日以上）</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_irregular">
+          <span>月経周期が不安定</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_heavy">
+          <span>経血量が多い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_light">
+          <span>経血量が少ない</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_bright_red">
+          <span>経血が鮮やかな赤</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_dark_clots">
+          <span>経血が暗い／黒っぽい・塊がある</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_strong_pain">
+          <span>月経痛が強い</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_pain_relieve_warm">
+          <span>温めると痛みがやわらぐ</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_pain_worse_cold">
+          <span>冷えると痛みが強くなる</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_breast">
+          <span>月経前に胸が張る</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_irritability">
+          <span>月経前にイライラしやすい</span>
+        </label>
+        <label class="question-item">
+          <input type="checkbox" data-qid="q_menses_premenstrual_edema">
+          <span>月経前にむくみが出る</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="diagnoseButton">体質を診断する</button>
+    </div>
+    <div class="note">
+      チェック内容は送信されず、このページ内だけで判定されます。
+    </div>
+
+    <!-- ▼ 診断結果エリア -->
+    <div class="results">
+      <div id="topResults"></div>
+      <div id="allScores"></div>
+    </div>
+
+    <div id="taishitsuInfoArea">
+  <div class="taishitsu-section">
+    <p class="taishitsu-title">8つの体質を詳しく見る</p>
+
+    <div class="taishitsu-grid">
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/kikyo" target="_blank">
+          <img src="./image/kikyo.webp" alt="気虚">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/kitai" target="_blank">
+          <img src="./image/kitai.webp" alt="気滞">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/kekkyo" target="_blank">
+          <img src="./image/kekkyo.webp" alt="血虚">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/oketsu" target="_blank">
+          <img src="./image/oketsu.webp" alt="瘀血">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/suitai" target="_blank">
+          <img src="./image/suitai.webp" alt="水滞">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/yokyo" target="_blank">
+          <img src="./image/yokyo.webp" alt="陽虚">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/inkyo" target="_blank">
+          <img src="./image/inkyo.webp" alt="陰虚">
+        </a>
+      </div>
+
+      <div class="taishitsu-item">
+        <a href="https://reiwa-ph.com/kampoph/taishitsu/yonetsu" target="_blank">
+          <img src="./image/yonetsu.webp" alt="陽熱">
+        </a>
+      </div>
+
+    </div>
+  </div>
+  <!-- ▼ この位置にCTAを置く（最初は非表示） -->
+  <div id="consultCTA" class="consult-section" style="display:none;">
+    <p class="consult-text">
+      一人ひとりの体質に合わせて薬剤師が療養方法をご提案します。<br>
+      体質診断の結果を踏まえて、まずはお気軽にご相談ください。
+    </p>
+    <a href="https://reiwa-ph.com/kampoph/counseling" target="_blank" class="consult-btn">
+      無料で漢方相談を試す
+    </a>
+  </div>
+</div>
+
+  </div><!-- /.container -->
+
+  <!-- Chart.js を読み込み -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./script.js"></script>
+
+</body>
+</html>
