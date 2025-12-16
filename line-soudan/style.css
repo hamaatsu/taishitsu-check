@@ -547,3 +547,58 @@ body {
   color: #666;
   margin-bottom: 20px;
 }
+
+/* ▼▼▼ スマホ表示（SP）のレイアウト修正 ▼▼▼ */
+@media (max-width: 599px) {
+
+  /* 1. 共通設定：すべての入力欄の「縦幅」を広げる */
+  .basic-info-section input,
+  .basic-info-section select,
+  .basic-info-section textarea {
+    padding: 14px 10px; /* 上下の余白を増やして縦幅を広げる */
+    font-size: 16px;    /* 文字サイズも読みやすく */
+    box-sizing: border-box; /* 枠線を含めたサイズ計算 */
+  }
+
+  /* 2. 年齢：縦幅は広がるが、横幅は狭いまま（「歳」と並べるため） */
+  .basic-info-section #userAge {
+    width: 80px !important;
+    display: inline-block;
+  }
+  
+  /* 3. 性別：縦幅を広げる（横幅はお好みで、ここでは少し広めに確保） */
+  .basic-info-section #userGender {
+    min-width: 120px; /* 押しやすい幅に */
+  }
+
+  /* 4. 都道府県・症状・いつから・薬：
+     「ラベルと縦並び」にし、「横幅を最大」にする */
+  
+  /* まず、これらを囲っているグループ（div）を縦並びレイアウト用に整理 */
+  .basic-info-section .form-group {
+    margin-bottom: 20px;
+  }
+
+  /* 対象のラベルをブロック要素にして改行させる */
+  /* （年齢と性別以外のラベルを対象にするため、あえて全ラベルに適用し、年齢などは別途調整も可能ですが、
+      今回はご要望の項目を確実に縦並びにします） */
+  
+  /* 都道府県、症状、いつから、薬のラベル */
+  .basic-info-section label[for="userPref"],
+  .basic-info-section label[for="userSymptom"],
+  .basic-info-section label[for="userDuration"],
+  .basic-info-section label[for="userMedicine"] {
+    display: block;      /* 改行して上に配置 */
+    margin-bottom: 8px;  /* 入力欄との隙間 */
+    width: 100%;
+  }
+
+  /* 都道府県、症状、いつから、薬の入力欄 */
+  .basic-info-section #userPref,
+  .basic-info-section #userSymptom,
+  .basic-info-section #userDuration,
+  .basic-info-section #userMedicine {
+    display: block;      /* 改行して下に配置 */
+    width: 100%;         /* 横幅いっぱい */
+  }
+}
