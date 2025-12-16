@@ -233,24 +233,24 @@ if (consultCTA) {
   consultCTA.style.display = "block";
 }
 
-// ▼▼▼ ここから追加：LINEボタンに結果をセットする処理 ▼▼▼
+// ▼▼▼ 【修正版】LINEボタンに結果をセットする処理 ▼▼▼
       
       // 1. チェックされた症状（回答）のテキストを集める
       const checkedInputs = document.querySelectorAll('input[type="checkbox"]:checked');
       let symptomList = [];
       checkedInputs.forEach(input => {
-        // チェックボックスの横にある文字を取得（余分な空白は削除）
         let text = input.parentElement.innerText || input.parentElement.textContent;
         text = text.replace(/[\n\r]+|^\s+|\s+$/g, ''); 
         symptomList.push(text);
       });
 
       // 2. 診断結果（上位2つ）を取得
-      // topResults は既存コード内で計算されている上位タイプのリスト
+      // ★ここを修正しました（topResults → top3、r.type → r.name）
       let resultText = "判定なし";
-      if (typeof topResults !== 'undefined' && topResults.length > 0) {
+      // top3という変数が上の行（renderResults内）で作られているのでそれを使います
+      if (typeof top3 !== 'undefined' && top3.length > 0) {
          // 上位2つを「・」でつなぐ（例：気虚・水滞）
-         resultText = topResults.slice(0, 2).map(r => r.type).join('・');
+         resultText = top3.slice(0, 2).map(r => r.name).join('・');
       }
 
       // 3. LINEに送るメッセージの文章を作る
@@ -262,13 +262,11 @@ ${symptomList.map(s => '・' + s).join('\n')}
 
 この内容で漢方相談をお願いします。`;
 
-      // 4. ★重要★ あなたのLINE公式アカウントIDに書き換えてください
-      // 必ず「@」をつけてください（例：@reiwa_kampo）
-      const yourLineId = "@281clqmv"; 
+      // 4. ★あなたのLINE IDはそのままでOKです★
+      const yourLineId = "@281clqmv"; // ←ここだけはご自身のアカウントIDのままにしてください
 
       // 5. URLを作ってボタンにセットする
       const encodedMsg = encodeURIComponent(messageText);
-      // LINEの友達追加＆トーク画面へ飛ぶURL形式
       const lineUrl = `https://line.me/R/oaMessage/${yourLineId}/?${encodedMsg}`;
       
       const lineBtn = document.getElementById("lineConsultBtn");
