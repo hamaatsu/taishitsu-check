@@ -1,604 +1,151 @@
-
 body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                   "Helvetica Neue", Arial, "YuGothic", "Yu Gothic",
-                   "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
-      line-height: 1.7;
-      margin: 0;
-      padding: 0;
-      background: #faf7f2;
-      color: #57443a;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px 16px 40px;
-      box-sizing: border-box;
-      background: #fff;
-    }
-
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p.lead {
-      font-size: 0.95rem;
-      color: #57443a;
-      margin-bottom: 1.5rem;
-    }
-
-    .section {
-      margin-bottom: 24px;
-      padding: 16px 14px;
-      border-radius: 8px;
-      background: #f7f5f0;
-    }
-
-    .section h2 {
-      font-size: 1rem;
-      margin: 0 0 10px;
-      border-left: 4px solid #57443a;
-      padding-left: 8px;
-    }
-
-    .questions-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 6px 16px;
-    }
-
-    .question-item {
-      display: flex;
-      align-items: flex-start;
-      font-size: 0.9rem;
-      cursor: pointer;
-    }
-
-    .question-item input[type="checkbox"] {
-      margin-right: 6px;
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
-
-    .actions {
-      text-align: center;
-      margin: 24px 0 8px;
-    }
-
-    #diagnoseButton {
-      display: inline-block;
-      padding: 10px 32px;
-      font-size: 1rem;
-      border-radius: 999px;
-      border: none;
-      background: #57443a;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    #diagnoseButton:hover {
-      opacity: 0.9;
-    }
-
-    .note {
-      text-align: center;
-      font-size: 0.8rem;
-      color: #777;
-      margin-bottom: 24px;
-    }
-
-    /* ▼ 帰り口ナビ（PC共通） */
-    .back-nav-wrapper {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: #ffffff !important;
-      z-index: 9999;
-      padding: 8px 0;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
-
-    .back-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    .back-nav-left {
-      display: flex;
-      align-items: center;
-    }
-
-    .back-nav-logo img {
-      height: 32px;
-      width: auto;
-      display: block;
-    }
-
-    .back-nav-right {
-      display: flex;
-      gap: 12px;
-    }
-
-    .back-nav-link {
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid #ddd0c0;
-      background: #f7f3eb;
-      text-decoration: none;
-      color: #555;
-      font-size: 0.85rem;
-    }
-
-    .back-nav-link:hover {
-      background: #ece3d5;
-      color: #57443a;
-    }
-
-    /* ▼ SP（599px以下） */
-    @media (max-width: 599px) {
-      .back-nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-      }
-
-      .back-nav-left {
-        width: 100%;
-      }
-
-      .back-nav-logo img {
-        height: 26px;
-      }
-
-      .back-nav-right {
-        display: flex;
-        width: 100%;
-        justify-content: flex-start;
-        gap: 8px;
-        flex-wrap: nowrap;
-      }
-
-      .back-nav-link {
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        white-space: nowrap;
-      }
-    }
-
-    /* ▼ 結果エリア全体 */
-    .results {
-      margin-top: 24px;
-      padding-top: 16px;
-      border-top: 1px solid #e0ddd6;
-    }
-
-    .results h3 {
-      font-size: 1rem;
-      margin-bottom: 8px;
-    }
-
-    /* 通常のリスト（top-type-list以外） */
-    .results ol:not(.top-type-list),
-    .results ul:not(.top-type-list) {
-      margin: 0 0 16px 1.2rem;
-      padding: 0;
-      font-size: 0.95rem;
-    }
-
-    .results li {
-      margin-bottom: 4px;
-    }
-
-    /* 結果カード（薄茶の大きなカード） */
-    .results-card {
-      margin-top: 8px;
-      padding: 18px;
-      border-radius: 12px;
-      background: #fcfaf6;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      border: 1px solid #ebe4d6;
-    }
-
-    .results-header {
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      color: #aa7b4a;
-      margin-bottom: 8px;
-    }
-
-    /* 左＝3タイプ / 右＝レーダー を並べる箱 */
-    .results-main {
-      display: flex;
-      gap: 18px;
-      align-items: stretch;
-      flex-wrap: wrap;
-    }
-
-    /* 左側（3タイプ） */
-    .results-main-left {
-      flex: 1 1 52%;
-      min-width: 0;
-    }
-
-    .results-main-title {
-      font-size: 1.05rem;
-      font-weight: 600;
-      margin: 0 0 10px;
-    }
-
-    /* No.1〜3のリスト */
-    .top-type-list {
-      list-style: none;
-      margin: 0 0 14px;
-      padding: 0;
-    }
-
-    .top-type-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: #fff;
-      border: 1px solid #eee0cf;
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-    }
-
-    .rank-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 48px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #57443a;
-      color: #fff;
-      font-size: 0.75rem;
-      margin-right: 8px;
-      flex-shrink: 0;
-    }
-
-    .type-label {
-      flex: 1;
-      font-weight: 500;
-    }
-
-    .type-score {
-      font-variant-numeric: tabular-nums;
-      font-size: 0.85rem;
-      color: #57443a;
-      margin-left: 8px;
-      white-space: nowrap;
-    }
-
-    /* レーダーチャート側の枠 */
-    .results-main-right {
-      flex: 1 1 40%;
-      min-width: 0;
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 14px 14px 18px;
-      border: 1px solid #ebe4d6;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-
-    .results-subtitle {
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin: 0 0 4px;
-    }
-
-    /* レーダーグラフの枠（PC共通） */
-    .radar-wrap {
-      position: relative;
-      width: 100%;
-      max-width: 240px;
-      margin: 4px auto 0;
-      aspect-ratio: 1 / 1;
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-
-    /* Chart.js のキャンバスを必ず枠内に収める */
-    #typeRadar {
-      display: block;
-      width: 100% !important;
-      max-width: 100% !important;
-      height: auto !important;
-    }
-
-    /* PCより小さいとき：質問カードは1列、結果は縦並び */
-    @media (max-width: 768px) {
-      .results-main {
-        flex-direction: column;
-      }
-
-      .results-main-left,
-      .results-main-right {
-        flex-basis: auto;
-        width: 100%;
-      }
-
-      .results-main-right {
-        margin-top: 8px;
-        align-items: center;
-        box-sizing: border-box;
-      }
-
-      .results-card {
-        padding: 14px 12px 16px;
-      }
-
-      .top-type-item {
-        font-size: 0.85rem;
-      }
-    }
-
-    @media (max-width: 599px) {
-      h1 {
-        font-size: 1.3rem;
-      }
-
-      .section {
-        padding: 12px 10px;
-      }
-
-      .questions-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .results-main-right {
-        align-items: center;
-      }
-
-      .radar-wrap {
-        max-width: 220px;
-        margin: 4px auto 0;
-      }
-    }
-
-    /* ▼ 8つの体質エリア（カード＋グリッド） */
-    #taishitsuInfoArea {
-      display: none;          /* 最初は非表示（診断後に表示） */
-      margin-top: 28px;
-    }
-
-    .taishitsu-section {
-      padding: 18px 18px 20px;
-      border-radius: 12px;
-      background: #fcfaf6;
-      border: 1px solid #ebe4d6;
-    }
-
-    .taishitsu-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin: 0 0 12px;
-    }
-
-    /* PC：横並び8個 */
-    .taishitsu-grid {
-      display: grid;
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 12px;
-      justify-items: center;
-    }
-
-    /* 各アイコン */
-    .taishitsu-item {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .taishitsu-item img {
-      width: 56px;
-      height: 56px;
-      display: block;
-      cursor: pointer;   /* 手のカーソル */
-    }
-
-    /* アイコン下のテキストは非表示 */
-    .taishitsu-item span {
-      display: none;
-    }
-
-    /* SP：4列×2行 */
-    @media (max-width: 599px) {
-      .taishitsu-grid {
-        grid-template-columns: repeat(4, 1fr);
-        row-gap: 10px;
-      }
-    }
-    /* ▼ フッター（コンテナ幅 900px 内） */
-.footer-section {
-  margin-top: 40px;
-  padding: 24px 0 20px;
-  border-top: 1px solid #e0ddd6;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #555;
-}
-
-.footer-logo img {
-  height: 28px;
-  width: auto;
-  margin-bottom: 12px;
-}
-
-.footer-links {
-  margin-bottom: 10px;
-}
-
-.footer-links a {
-  margin: 0 12px;
-  color: #555;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-  color: #333;
-}
-
-.footer-copy {
-  margin: 4px 0 0;
-  color: #777;
-  font-size: 0.75rem;
-}
-
-/* SP（スマホ）調整 */
-@media (max-width: 599px) {
-  .footer-links a {
-    display: inline-block;
-  }
-}
-
-/* ▼ 漢方相談CTAセクション */
-.consult-section {
-  margin-top: 32px;
-  padding: 24px 20px;
-  text-align: center;
-  background: #f7f5f0;
-  border-radius: 10px;
-  border: 1px solid #ebe4d6;
-}
-
-.consult-text {
-  font-size: 0.95rem;
-  color: #555;
-  margin: 0 0 16px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "YuGothic", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
   line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  background: #faf7f2;
+  color: #57443a;
 }
 
-.consult-btn {
-  display: inline-block;
-  padding: 10px 28px;
-  background: #4e3d33;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 999px;
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p.lead {
   font-size: 0.95rem;
+  color: #57443a;
+  margin-bottom: 1.5rem;
 }
 
-.consult-btn:hover {
+/* 各セクションの箱 */
+.section {
+  margin-bottom: 24px;
+  padding: 16px 14px;
+  border-radius: 8px;
+  background: #f7f5f0;
+}
+
+.section h2 {
+  font-size: 1rem;
+  margin: 0 0 10px;
+  border-left: 4px solid #57443a;
+  padding-left: 8px;
+}
+
+/* チェックボックスのグリッドレイアウト */
+.questions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 6px 16px;
+}
+
+.question-item {
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.question-item input[type="checkbox"] {
+  margin-right: 6px;
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+/* ボタンエリア */
+.actions {
+  text-align: center;
+  margin: 24px 0 8px;
+}
+
+/* ▼ 送信ボタンのデザイン修正 */
+#sendToLineButton {
+  display: inline-block;
+  padding: 12px 40px;      /* ボタンを大きく */
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 999px;
+  border: none;
+  background: #57443a;     /* 茶色に戻す */
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 少し影をつけてリッチに */
+  transition: opacity 0.2s;
+}
+
+#sendToLineButton:hover {
   opacity: 0.9;
 }
 
-/* SP 調整 */
-@media (max-width: 599px) {
-  .consult-section {
-    padding: 20px 16px;
-  }
+/* ▼▼▼ 入力フォーム共通CSS（基本情報・その他 共通） ▼▼▼ */
+/* 修正点：.basic-info-section 限定を解除しました */
 
-  .consult-text {
-    font-size: 0.9rem;
-  }
-
-  .consult-btn {
-    width: 100%;
-    max-width: 260px;
-  }
-}
-
-/* ▼▼▼ 基本情報フォーム用CSS ▼▼▼ */
-.basic-info-section .form-group {
+.form-group {
   margin-bottom: 20px;
 }
 
-.basic-info-section label {
+.section label {
   display: block;
   font-weight: bold;
   margin-bottom: 6px;
   color: #57443a;
 }
 
-.basic-info-section input[type="text"],
-.basic-info-section input[type="number"],
-.basic-info-section select,
-.basic-info-section textarea {
+/* すべてのテキスト入力エリアのデザイン */
+.section input[type="text"],
+.section input[type="number"],
+.section select,
+.section textarea {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px; /* スマホでズームしないサイズ */
-  box-sizing: border-box;
+  border-radius: 6px;
+  font-size: 16px;
+  box-sizing: border-box; /* 枠線を含めて幅計算 */
   font-family: inherit;
+  background: #fff;
 }
 
-.basic-info-section textarea {
+.section textarea {
   resize: vertical;
 }
 
-.section-desc {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 20px;
+/* 年齢の入力欄だけ少し小さく */
+#userAge {
+  width: 100px !important;
+  display: inline-block;
+  margin-right: 4px;
 }
 
-/* ▼▼▼ スマホ表示（SP）のレイアウト修正 ▼▼▼ */
+/* ▼▼▼ スマホ表示（SP）調整 ▼▼▼ */
 @media (max-width: 599px) {
-
-  /* 1. 共通設定：すべての入力欄の「縦幅」を広げる */
-  .basic-info-section input,
-  .basic-info-section select,
-  .basic-info-section textarea {
-    padding: 14px 10px; /* 上下の余白を増やして縦幅を広げる */
-    font-size: 16px;    /* 文字サイズも読みやすく */
-    box-sizing: border-box; /* 枠線を含めたサイズ計算 */
+  h1 {
+    font-size: 1.3rem;
   }
 
-  /* 2. 年齢：縦幅は広がるが、横幅は狭いまま（「歳」と並べるため） */
-  .basic-info-section #userAge {
-    width: 80px !important;
-    display: inline-block;
-  }
-  
-  /* 3. 性別：縦幅を広げる（横幅はお好みで、ここでは少し広めに確保） */
-  .basic-info-section #userGender {
-    min-width: 120px; /* 押しやすい幅に */
+  .section {
+    padding: 12px 10px;
   }
 
-  /* 4. 都道府県・症状・いつから・薬：
-     「ラベルと縦並び」にし、「横幅を最大」にする */
-  
-  /* まず、これらを囲っているグループ（div）を縦並びレイアウト用に整理 */
-  .basic-info-section .form-group {
-    margin-bottom: 20px;
+  .questions-grid {
+    grid-template-columns: 1fr;
   }
 
-  /* 対象のラベルをブロック要素にして改行させる */
-  /* （年齢と性別以外のラベルを対象にするため、あえて全ラベルに適用し、年齢などは別途調整も可能ですが、
-      今回はご要望の項目を確実に縦並びにします） */
-  
-  /* 都道府県、症状、いつから、薬のラベル */
-  .basic-info-section label[for="userPref"],
-  .basic-info-section label[for="userSymptom"],
-  .basic-info-section label[for="userDuration"],
-  .basic-info-section label[for="userMedicine"] {
-    display: block;      /* 改行して上に配置 */
-    margin-bottom: 8px;  /* 入力欄との隙間 */
-    width: 100%;
-  }
-
-  /* 都道府県、症状、いつから、薬の入力欄 */
-  .basic-info-section #userPref,
-  .basic-info-section #userSymptom,
-  .basic-info-section #userDuration,
-  .basic-info-section #userMedicine {
-    display: block;      /* 改行して下に配置 */
-    width: 100%;         /* 横幅いっぱい */
+  /* 入力欄をタップしやすく */
+  .section input,
+  .section select,
+  .section textarea {
+    padding: 14px 10px;
+    font-size: 16px;
   }
 }
