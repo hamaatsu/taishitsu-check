@@ -4,45 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- ▼ Title -->
-  <title>無料体質診断｜気虚・血虚・瘀血などがわかる無料チェック丨れいわ漢方薬局</title>
+  <title>漢方相談 問診票｜れいわ漢方薬局</title>
 
-  <!-- ▼ favicon -->
   <link rel="icon" href="./image/reiwakaicon.png" type="image/png" />
 
-  <!-- ▼ meta description -->
-  <meta name="description" content="簡単なチェックで気虚・血虚・瘀血などの体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
-
-  <!-- ▼ OGP -->
-  <meta property="og:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
-  <meta property="og:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://taishitsu.reiwa-ph.com/" />
-  <meta property="og:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
-  <meta property="og:site_name" content="れいわ漢方薬局" />
-
-  <!-- ▼ Twitterカード -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="漢方オンライン体質診断｜れいわ漢方薬局" />
-  <meta name="twitter:description" content="簡単なチェックで気虚・血虚・水滞の体質バランスがわかるオンライン体質診断。あなたの傾向と改善のヒントを可視化して、体調管理や漢方選びに役立てられます。" />
-  <meta name="twitter:image" content="https://taishitsu.reiwa-ph.com/taishitsu-check/image/share.png" />
-
+  <meta name="description" content="れいわ漢方薬局へのLINE相談用問診票です。" />
+  
   <link rel="stylesheet" href="./style.css">
-
 </head>
 
 <body>
 
   <div class="container">
-    <h1>体質診断チェック</h1>
+    <h1>漢方相談 問診票</h1>
     <p class="lead">
-      当てはまる項目にチェックを入れてください。<br>
-      すべての項目に答える必要はありませんが、できるだけ近いものを選んでいただくと体質判定の精度が上がります。
+      以下の項目を入力・チェックして、一番下の送信ボタンを押してください。<br>
+      LINEが起動し、問診内容が送信できます。
     </p>
-  <div class="section basic-info-section">
-      <h2>基本情報の入力</h2>
-      <p class="section-desc">相談をスムーズに行うため、差し支えない範囲でご記入ください。</p>
 
+    <div class="section basic-info-section">
+      <h2>基本情報</h2>
       <div class="form-group">
         <label for="userAge">年齢</label>
         <input type="number" id="userAge" placeholder="例：35" style="width: 80px;"> 歳
@@ -128,301 +109,276 @@
       </div>
     </div>
 
-    <!-- 感情・眠り -->
     <div class="section">
       <h2>感情・眠り</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_emotion_irritability">
+          <input type="checkbox">
           <span>イライラしやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_emotion_anger">
+          <input type="checkbox">
           <span>怒りっぽい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_emotion_anxiety">
+          <input type="checkbox">
           <span>不安になりやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_emotion_tension">
+          <input type="checkbox">
           <span>緊張しやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_emotion_sigh_chest">
+          <input type="checkbox">
           <span>ため息が多い／胸がつかえる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_sleep_many_dreams">
+          <input type="checkbox">
           <span>夢が多い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_sleep_shallow">
+          <input type="checkbox">
           <span>眠りが浅い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_sleep_daytime_sleepy">
+          <input type="checkbox">
           <span>日中に眠くなりやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_sleep_hot_insomnia">
+          <input type="checkbox">
           <span>暑くて寝つけない</span>
         </label>
       </div>
     </div>
 
-    <!-- 体の傾向 -->
     <div class="section">
       <h2>体の傾向</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_cold_handsfeet">
+          <input type="checkbox">
           <span>寒がり／手足が冷える</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_facial_flushing">
+          <input type="checkbox">
           <span>顔がのぼせやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_upper_hot_lower_cold">
+          <input type="checkbox">
           <span>上半身が熱く下半身が冷える</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_edema">
+          <input type="checkbox">
           <span>むくみやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_heavy">
+          <input type="checkbox">
           <span>体が重だるい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_sweat">
+          <input type="checkbox">
           <span>汗をかきやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_easy_fatigue">
+          <input type="checkbox">
           <span>少し動くと疲れやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_pale_face">
+          <input type="checkbox">
           <span>顔色が悪い／血の気が少ない</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tendency_short_breath">
+          <input type="checkbox">
           <span>息切れしやすい</span>
         </label>
       </div>
     </div>
 
-    <!-- 体の状態 -->
     <div class="section">
       <h2>体の状態</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_stiff_shoulder_neck">
+          <input type="checkbox">
           <span>肩や首がこりやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_fixed_pain">
+          <input type="checkbox">
           <span>痛みが同じ場所にとどまる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_numb_handsfeet">
+          <input type="checkbox">
           <span>手足がしびれる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_dry_skin">
+          <input type="checkbox">
           <span>乾燥肌でかさつく</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_spots_dullness">
+          <input type="checkbox">
           <span>シミ・くすみが気になる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_acne">
+          <input type="checkbox">
           <span>ニキビ／吹き出物が出やすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_inflammation_redness">
+          <input type="checkbox">
           <span>炎症や赤みが出やすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_hot_flash">
+          <input type="checkbox">
           <span>ほてりを感じやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_state_night_sweat">
+          <input type="checkbox">
           <span>夜に寝汗をかく</span>
         </label>
       </div>
     </div>
 
-    <!-- 舌・口・目 -->
     <div class="section">
       <h2>舌・口・目</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_pale">
+          <input type="checkbox">
           <span>舌が白っぽい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_red">
+          <input type="checkbox">
           <span>舌が赤い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_teethmarks">
+          <input type="checkbox">
           <span>舌に歯の跡がつく</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_coat_white_thick">
+          <input type="checkbox">
           <span>舌苔が白く厚い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_coat_yellow_thick">
+          <input type="checkbox">
           <span>舌苔が黄色く厚い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_tongue_dry_cracked">
+          <input type="checkbox">
           <span>舌が乾き／ひび割れる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_mouth_dry">
+          <input type="checkbox">
           <span>口が渇きやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_eye_fatigue">
+          <input type="checkbox">
           <span>目が疲れやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_eye_red">
+          <input type="checkbox">
           <span>目が充血しやすい</span>
         </label>
       </div>
     </div>
 
-    <!-- 消化・便通・食欲 -->
     <div class="section">
       <h2>消化・便通・食欲</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_poor_appetite">
+          <input type="checkbox">
           <span>食欲が落ちやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_postprandial_sleepy">
+          <input type="checkbox">
           <span>食後に眠くなる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_bloating">
+          <input type="checkbox">
           <span>お腹が張りやすい／胃もたれ</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_soft_stool">
+          <input type="checkbox">
           <span>便が柔らかい／水っぽい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_diarrhea">
+          <input type="checkbox">
           <span>下痢しやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_constipation">
+          <input type="checkbox">
           <span>便秘しやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_digest_alt_diarrhea_constipation">
+          <input type="checkbox">
           <span>下痢と便秘をくり返す</span>
         </label>
       </div>
     </div>
 
-    <!-- 月経（該当者のみ） -->
     <div class="section">
       <h2>月経（該当者のみ）</h2>
       <div class="questions-grid">
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_short_cycle">
+          <input type="checkbox">
           <span>月経周期が短い（25日以内）</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_long_cycle">
+          <input type="checkbox">
           <span>月経周期が長い（35日以上）</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_irregular">
+          <input type="checkbox">
           <span>月経周期が不安定</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_heavy">
+          <input type="checkbox">
           <span>経血量が多い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_light">
+          <input type="checkbox">
           <span>経血量が少ない</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_bright_red">
+          <input type="checkbox">
           <span>経血が鮮やかな赤</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_dark_clots">
+          <input type="checkbox">
           <span>経血が暗い／黒っぽい・塊がある</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_strong_pain">
+          <input type="checkbox">
           <span>月経痛が強い</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_pain_relieve_warm">
+          <input type="checkbox">
           <span>温めると痛みがやわらぐ</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_pain_worse_cold">
+          <input type="checkbox">
           <span>冷えると痛みが強くなる</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_premenstrual_breast">
+          <input type="checkbox">
           <span>月経前に胸が張る</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_premenstrual_irritability">
+          <input type="checkbox">
           <span>月経前にイライラしやすい</span>
         </label>
         <label class="question-item">
-          <input type="checkbox" data-qid="q_menses_premenstrual_edema">
+          <input type="checkbox">
           <span>月経前にむくみが出る</span>
         </label>
       </div>
     </div>
-
+    <div class="section">
+      <div class="form-group">
+        <label for="userNote">その他、伝えたいこと</label>
+        <textarea id="userNote" rows="3" placeholder="ご質問や、補足したいことがあればご記入ください"></textarea>
+      </div>
+    </div>
     <div class="actions">
-      <button id="diagnoseButton">体質を診断する</button>
-    </div>
-    <div class="note">
-      チェック内容は送信されず、このページ内だけで判定されます。
+      <button id="sendToLineButton">問診をLINEに送る</button>
     </div>
 
-    <!-- ▼ 診断結果エリア -->
-    <div class="results">
-      <div id="topResults"></div>
-      <div id="allScores"></div>
-    </div>
-
-  <!-- ▼ この位置にCTAを置く（最初は非表示） -->
-  <div id="consultCTA" class="consult-section" style="display:none;">
-    <p class="consult-text">
-     ボタンを押すとれいわ漢方薬局のLINEに送信されます。
-    </p>
-    <a id="lineConsultBtn" href="#" class="consult-btn">
-  診断結果をLINEに送る
-</a>
-  </div>
-</div>
-
-  </div><!-- /.container -->
-
-  <!-- Chart.js を読み込み -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="./script.js"></script>
+  </div><script src="./script.js"></script>
 
 </body>
 </html>
