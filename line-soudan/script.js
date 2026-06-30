@@ -6,6 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
 
+    // ▼▼▼ 0. 同意チェック（必須・未チェックなら送信しない） ▼▼▼
+    const agree = document.getElementById("agreeCheck");
+    if (agree && !agree.checked) {
+      alert("「上記の内容に同意します（必須）」にチェックを入れてください。");
+      agree.focus();
+      return;
+    }
+
     // ▼▼▼ 1. 基本情報の取得 ▼▼▼
     const age = document.getElementById("userAge").value;
     const gender = document.getElementById("userGender").value;

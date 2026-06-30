@@ -61,6 +61,32 @@ p.lead {
   flex-shrink: 0;
 }
 
+/* ▼ 同意エリア（漢方名だけのご相談を避けるための案内＋必須チェック） */
+.consent-section {
+  background: #fbf3ea;
+  border: 1px solid #d8c4ad;
+}
+
+.consent-note {
+  font-size: 0.9rem;
+  margin: 0 0 12px;
+  color: #57443a;
+}
+
+.consent-check {
+  display: flex !important;
+  align-items: flex-start;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.consent-check input[type="checkbox"] {
+  width: auto !important;
+  margin-right: 8px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
 /* ボタンエリア */
 .actions {
   text-align: center;
