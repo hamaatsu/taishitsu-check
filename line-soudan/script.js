@@ -14,7 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // ▼▼▼ 0-2. お名前・ふりがな（必須・未入力なら送信しない） ▼▼▼
+    const nameInput = document.getElementById("userName");
+    if (nameInput && !nameInput.value.trim()) {
+      alert("お名前をご入力ください。");
+      nameInput.focus();
+      return;
+    }
+
+    const kanaInput = document.getElementById("userKana");
+    if (kanaInput && !kanaInput.value.trim()) {
+      alert("ふりがなをご入力ください。");
+      kanaInput.focus();
+      return;
+    }
+
     // ▼▼▼ 1. 基本情報の取得 ▼▼▼
+    const name = nameInput ? nameInput.value.trim() : "";
+    const kana = kanaInput ? kanaInput.value.trim() : "";
     const age = document.getElementById("userAge").value;
     const gender = document.getElementById("userGender").value;
     const pref = document.getElementById("userPref").value;
@@ -40,6 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ▼▼▼ 3. LINEに送る文章を作成 ▼▼▼
     const messageText = `【基本情報】
+お名前：${name || "未入力"}
+ふりがな：${kana || "未入力"}
 年齢：${age || "未入力"}歳
 性別：${gender || "未入力"}
 地域：${pref || "未入力"}
