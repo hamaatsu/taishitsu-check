@@ -117,6 +117,25 @@
         <label for="userMedicine">飲んでいる薬（漢方・サプリ含む）</label>
         <textarea id="userMedicine" rows="2" placeholder="例：低用量ピル、ロキソニン"></textarea>
       </div>
+
+      <div class="form-group" id="pregnancyGroup">
+        <label>妊娠・授乳について（必須・あてはまるものすべて）</label>
+        <div class="pregnancy-grid">
+          <label class="pregnancy-item">
+            <input type="checkbox" class="pregnancy-check" value="妊娠中"> 妊娠中
+          </label>
+          <label class="pregnancy-item">
+            <input type="checkbox" class="pregnancy-check" value="授乳中"> 授乳中
+          </label>
+          <label class="pregnancy-item">
+            <input type="checkbox" class="pregnancy-check" value="妊娠を希望している"> 妊娠を希望している
+          </label>
+          <label class="pregnancy-item">
+            <input type="checkbox" class="pregnancy-check" id="pregnancyNone" value="いずれも該当しない"> いずれも該当しない
+          </label>
+        </div>
+        <p class="pregnancy-note">お選びできる漢方が変わりますので、必ずご回答ください。</p>
+      </div>
     </div>
 
     <div class="section">

@@ -3,6 +3,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!btn) return;
 
+  // ▼▼▼ 妊娠・授乳欄：性別が男性のときは非表示にする ▼▼▼
+  const genderSelect = document.getElementById("userGender");
+  const pregnancyGroup = document.getElementById("pregnancyGroup");
+  const pregnancyChecks = Array.prototype.slice.call(document.querySelectorAll(".pregnancy-check"));
+
+  if (genderSelect && pregnancyGroup) {
+    const togglePregnancy = () => {
+      const hide = genderSelect.value === "男性";
+      pregnancyGroup.style.display = hide ? "none" : "";
+      if (hide) pregnancyChecks.forEach(c => { c.checked = false; });
+    };
+    genderSelect.addEventListener("change", togglePregnancy);
+    togglePregnancy();
+  }
+
+  // ▼▼▼ 妊娠・授乳欄：「いずれも該当しない」と他の項目は同時に選べない ▼▼▼
+  const pregnancyNone = document.getElementById("pregnancyNone");
+  if (pregnancyNone) {
+    const others = pregnancyChecks.filter(c => c !== pregnancyNone);
+    pregnancyNone.addEventListener("change", () => {
+      if (pregnancyNone.checked) others.forEach(c => { c.checked = false; });
+    });
+    others.forEach(c => {
+      c.addEventListener("change", () => {
+        if (c.checked) pregnancyNone.checked = false;
+      });
+    });
+  }
+
   btn.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -26,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
     if (kanaInput && !kanaInput.value.trim()) {
       alert("ふりがなをご入力ください。");
       kanaInput.focus();
+      return;
+    }
+
+    // ▼▼▼ 0-3. 妊娠・授乳（必須・女性のみ表示） ▼▼▼
+    const pregnancyShown = pregnancyGroup && pregnancyGroup.style.display !== "none";
+    const pregnancySelected = pregnancyChecks.filter(c => c.checked).map(c => c.value);
+    if (pregnancyShown && pregnancySelected.length === 0) {
+      alert("妊娠・授乳についてご回答ください。あてはまるものがない場合は「いずれも該当しない」をお選びください。");
+      pregnancyGroup.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
 
@@ -56,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ▼▼▼ 3. LINEに送る文章を作成 ▼▼▼
+    // 男性で妊娠・授乳欄を出していない場合は、その行ごと送らない
+    const pregnancyLine = pregnancyShown ? `\n妊娠・授乳：${pregnancySelected.join("・")}` : "";
+
     const messageText = `【基本情報】
 お名前：${name || "未入力"}
 ふりがな：${kana || "未入力"}
@@ -64,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 地域：${pref || "未入力"}
 困っている症状：${symptom || "なし"}
 いつから：${duration || "不明"}
-服用薬：${medicine || "なし"}
+服用薬：${medicine || "なし"}${pregnancyLine}
 
 【その他】
 ${note || "なし"}

@@ -61,6 +61,35 @@ p.lead {
   flex-shrink: 0;
 }
 
+/* ▼ 妊娠・授乳の選択（基本情報内・複数選択可） */
+.pregnancy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 6px 16px;
+}
+
+.pregnancy-item {
+  display: flex !important;
+  align-items: flex-start;
+  font-size: 0.95rem;
+  font-weight: normal !important;
+  margin-bottom: 0 !important;
+  cursor: pointer;
+}
+
+.pregnancy-item input[type="checkbox"] {
+  width: auto !important;
+  margin-right: 6px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.pregnancy-note {
+  font-size: 0.85rem;
+  color: #8a7565;
+  margin: 8px 0 0;
+}
+
 /* ▼ 同意エリア（漢方名だけのご相談を避けるための案内＋必須チェック） */
 .consent-section {
   background: #fbf3ea;
@@ -163,7 +192,8 @@ p.lead {
     padding: 12px 10px;
   }
 
-  .questions-grid {
+  .questions-grid,
+  .pregnancy-grid {
     grid-template-columns: 1fr;
   }
 
