@@ -58,7 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ▼▼▼ 0-3. 妊娠・授乳（必須・女性のみ表示） ▼▼▼
+    // ▼▼▼ 0-3. 困っている症状（必須・未入力なら送信しない） ▼▼▼
+    const symptomInput = document.getElementById("userSymptom");
+    if (symptomInput && !symptomInput.value.trim()) {
+      alert("いま一番困っている症状をご入力ください。はっきりしない場合は、その旨をお書きいただいて大丈夫です。");
+      symptomInput.focus();
+      return;
+    }
+
+    // ▼▼▼ 0-4. 妊娠・授乳（必須・女性のみ表示） ▼▼▼
     const pregnancyShown = pregnancyGroup && pregnancyGroup.style.display !== "none";
     const pregnancySelected = pregnancyChecks.filter(c => c.checked).map(c => c.value);
     if (pregnancyShown && pregnancySelected.length === 0) {
@@ -73,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const age = document.getElementById("userAge").value;
     const gender = document.getElementById("userGender").value;
     const pref = document.getElementById("userPref").value;
-    const symptom = document.getElementById("userSymptom").value;
+    const symptom = symptomInput ? symptomInput.value.trim() : "";
     const duration = document.getElementById("userDuration").value;
     const medicine = document.getElementById("userMedicine").value;
     // ★追加：その他欄の取得
