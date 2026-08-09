@@ -1,7 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("sendToLineButton");
+  // 送信ボタンは2つ。押されたボタンで、送信文の末尾1行が変わる。
+  //   AI     → 「この内容でAI相談をお願いします。」   … GAS が MARK_AI で拾ってAIが即返信
+  //   薬剤師 → 「この内容で漢方相談をお願いします。」 … 薬剤師が手で返信（従来どおり）
+  // 🔴 この2行は GAS 側（ai-mode/gas/コード.gs の CONFIG.MARK_AI / MARK_HUMAN）と
+  //    一字一句そろえる。変えるときは両方直す。
+  const CLOSING = {
+    ai: "この内容でAI相談をお願いします。",
+    human: "この内容で漢方相談をお願いします。",
+  };
 
-  if (!btn) return;
+  const btn = document.getElementById("sendToLineButton");
+  const aiBtn = document.getElementById("sendToAiButton");
+
+  if (!btn && !aiBtn) return;
 
   // ▼▼▼ 妊娠・授乳欄：性別が男性のときは非表示にする ▼▼▼
   const genderSelect = document.getElementById("userGender");
@@ -32,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  btn.addEventListener("click", (e) => {
+  const handleSend = (mode) => (e) => {
     e.preventDefault();
 
     // ▼▼▼ 0. 同意チェック（必須・未チェックなら送信しない） ▼▼▼
@@ -121,12 +132,15 @@ ${note || "なし"}
 【回答データ】
 ${symptomList.join('\n')}
 
-この内容で漢方相談をお願いします。`;
+${CLOSING[mode] || CLOSING.human}`;
 
     // ▼▼▼ 4. LINEを起動する ▼▼▼
-    const yourLineId = "@281clqmv"; 
+    const yourLineId = "@281clqmv";
     const encodedMsg = encodeURIComponent(messageText);
-    
+
     window.location.href = `https://line.me/R/oaMessage/${yourLineId}/?${encodedMsg}`;
-  });
+  };
+
+  if (aiBtn) aiBtn.addEventListener("click", handleSend("ai"));
+  if (btn) btn.addEventListener("click", handleSend("human"));
 });
