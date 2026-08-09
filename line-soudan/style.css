@@ -166,6 +166,14 @@ p.lead {
   opacity: 0.92;
 }
 
+.action-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  opacity: 0.78;
+}
+
 .action-ai {
   background: #06803a;     /* 「すぐ届く」側。緑だが薬局の茶に馴染む深さに落とす */
 }
