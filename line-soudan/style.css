@@ -122,64 +122,24 @@ p.lead {
   margin: 24px 0 8px;
 }
 
-.actions-lead {
-  font-size: 0.95rem;
+/* ▼ 送信ボタンのデザイン修正 */
+#sendToLineButton {
+  display: inline-block;
+  padding: 12px 40px;      /* ボタンを大きく */
+  font-size: 1rem;
   font-weight: bold;
-  color: #57443a;
-  margin: 0 0 14px;
-}
-
-/* ▼ 送信ボタン（AI／薬剤師 の2択・同じ大きさで並べる） */
-.action-btn {
-  display: block;
-  width: 100%;
-  padding: 14px 20px;
+  border-radius: 999px;
   border: none;
-  border-radius: 16px;
+  background: #57443a;     /* 茶色に戻す */
   color: #fff;
   cursor: pointer;
-  text-align: center;
   text-decoration: none;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* 少し影をつけてリッチに */
   transition: opacity 0.2s;
 }
 
-.action-btn + .action-btn {
-  margin-top: 12px;
-}
-
-.action-btn:hover {
+#sendToLineButton:hover {
   opacity: 0.9;
-}
-
-.action-title {
-  display: block;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.action-sub {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.78rem;
-  line-height: 1.5;
-  opacity: 0.92;
-}
-
-.action-note {
-  display: block;
-  margin-top: 2px;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  opacity: 0.78;
-}
-
-.action-ai {
-  background: #06803a;     /* 「すぐ届く」側。緑だが薬局の茶に馴染む深さに落とす */
-}
-
-.action-human {
-  background: #57443a;     /* 現行の送信ボタンと同じ茶 */
 }
 
 /* ▼▼▼ 入力フォーム共通CSS（基本情報・その他 共通） ▼▼▼ */
