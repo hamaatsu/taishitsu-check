@@ -84,6 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const symptom = symptomInput ? symptomInput.value.trim() : "";
     const duration = document.getElementById("userDuration").value;
     const medicine = document.getElementById("userMedicine").value;
+    const kampoHistory = document.getElementById("userKampoHistory").value;
     // ★追加：その他欄の取得
     const note = document.getElementById("userNote").value;
 
@@ -113,7 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
 地域：${pref || "未入力"}
 困っている症状：${symptom || "なし"}
 いつから：${duration || "不明"}
-服用薬：${medicine || "なし"}${pregnancyLine}
+服用薬：${medicine || "なし"}
+これまでに飲んだ漢方薬：${kampoHistory || "なし"}${pregnancyLine}
 
 【その他】
 ${note || "なし"}
